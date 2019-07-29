@@ -6,9 +6,21 @@ export default function Home(props) {
     <View>
       <Text>Hi</Text>
       <Button
-        title="Button"
+        title="My Garden"
         onPress={() => {
           props.navigation.navigate("MyGarden");
+        }}
+      />
+      <Button
+        title="Vegetables"
+        onPress={() => {
+          props.navigation.navigate("Vegetables");
+        }}
+      />
+      <Button
+        title="Create Account"
+        onPress={() => {
+          props.navigation.navigate("CreateAccount");
         }}
       />
     </View>
