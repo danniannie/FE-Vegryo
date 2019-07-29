@@ -1,19 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import Home from "./screens/Home";
+import MyGarden from "./screens/MyGarden";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const appStack = createStackNavigator({
+  Home,
+  MyGarden
 });
+
+export default createAppContainer(appStack);
