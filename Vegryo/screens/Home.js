@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button } from "react-native";
 export default function Home(props) {
   return (
     <View>
-      <Text>Hi</Text>
       <Button
         title="My Garden"
         onPress={() => {
