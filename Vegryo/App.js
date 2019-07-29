@@ -3,12 +3,14 @@ import Home from "./screens/Home";
 import MyGarden from "./screens/MyGarden";
 import Vegetables from "./screens/Vegetables";
 import CreateAccount from "./screens/CreateAccount";
+import WelcomePage from "./screens/WelcomePage";
 
 const appStack = createStackNavigator({
   Home,
   MyGarden,
   Vegetables,
-  CreateAccount
+  CreateAccount,
+  WelcomePage
 });
 
 export default createAppContainer(appStack);

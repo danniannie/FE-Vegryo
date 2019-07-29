@@ -17,6 +17,12 @@ export default function Home(props) {
         }}
       />
       <Button
+        title="Welcome Page"
+        onPress={() => {
+          props.navigation.navigate("WelcomePage");
+        }}
+      />
+      <Button
         title="Create Account"
         onPress={() => {
           props.navigation.navigate("CreateAccount");
