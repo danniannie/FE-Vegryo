@@ -1,19 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import VeggieCard from "../components/VeggieCard";
 import * as api from '../utils/api'
 
+
 export default class Vegetables extends React.Component {
   state = {
-    vegetables: []
+    vegetables: [],
   }
+
   render() {
-    console.log(this.state)
+    const { vegetables } = this.state
+
     return (
-      <View>
-        <Text>Vegetables page</Text>
-        <VeggieCard />
-      </View>
+      <ScrollView>
+
+        {vegetables.map((vegetable) =>
+          <VeggieCard vegetable={vegetable} key={vegetable.id}></VeggieCard>
+        )}
+
+
+
+      </ScrollView>
     );
   }
 
