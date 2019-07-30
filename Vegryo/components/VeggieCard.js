@@ -4,15 +4,15 @@ import { Collapse, CollapseHeader, CollapseBody } from 'accordion-collapse-react
 
 export default class VeggieCard extends React.Component {
   render() {
-    const { vegetable, count } = this.props
+    const { vegetable, count = 0 } = this.props
     return (
       <Collapse >
         <CollapseHeader style={styles.header}><Text>{vegetable.id} </Text></CollapseHeader>
         <CollapseBody style={styles.body}>
           <Button title='+' style={styles.button} onPress={() => { this.vote(1) }}></Button>
-          <Button title='-' style={styles.button} onPress={() => { this.vote(-1) }}></Button>
+          <Button title='-' style={styles.button} onPress={() => { if (count === 0) { disabled = true } else { this.vote(-1) } }}></Button>
           <Text>
-            {vegetable.id} count: {count || 0}{"\n"}{"\n"}
+            {vegetable.id} count: {count}{"\n"}{"\n"}
             Optimal Soil: {vegetable.data.OptimalSoil}{"\n"}{"\n"}
             Watering: {vegetable.data.Watering}{"\n"}{"\n"}
             Optimal Sun: {vegetable.data.OptimalSun}{"\n"}{"\n"}
