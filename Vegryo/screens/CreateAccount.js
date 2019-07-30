@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, ScrollView, TextInput } from "react-native";
+import * as api from '../utils/api'
 
 export default class CreateAccount extends React.Component {
   state = {
@@ -65,7 +66,7 @@ export default class CreateAccount extends React.Component {
         Name, Username, Email, GardenLength, GardenWidth, City
       }
     }
-
+    api.postNewUser(body).then(user => console.log(user))
   }
 
 
