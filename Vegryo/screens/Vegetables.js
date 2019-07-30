@@ -11,16 +11,14 @@ export default class Vegetables extends React.Component {
 
   render() {
     const { vegetables } = this.state
-
     return (
       <ScrollView>
-
         {vegetables.map((vegetable) =>
           <VeggieCard vegetable={vegetable} key={vegetable.id}></VeggieCard>
         )}
-
-
-
+        <Button title='Build your Garden' onPress={() => {
+          this.props.navigation.navigate("MyGarden");
+        }}></Button>
       </ScrollView>
     );
   }

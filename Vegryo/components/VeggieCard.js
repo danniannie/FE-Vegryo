@@ -1,21 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { Collapse, CollapseHeader, CollapseBody, AccordionList } from 'accordion-collapse-react-native';
+import { Collapse, CollapseHeader, CollapseBody } from 'accordion-collapse-react-native';
 
 export default function VeggieCard(props) {
   const { vegetable } = props
   return (
     <Collapse >
-      <CollapseHeader style={styles.header}><Text>{vegetable.id}</Text></CollapseHeader>
-      <CollapseBody><Text>
-        Optimal Soil: {vegetable.data.OptimalSoil}{"\n"}
-        Watering: {vegetable.data.Watering}{"\n"}
-        Optimal Sun: {vegetable.data.OptimalSun}{"\n"}
-        When to Plant: {vegetable.data.WhenToPlant}{"\n"}
-        Care: {vegetable.data.Care}{"\n"}
-        Spacing: {vegetable.data.Spacing}{"\n"}
-        Planting Considerations: {vegetable.data.PlantingConsiderations}{"\n"}
-        Description: {vegetable.data.Description}{"\n"}{"\n"}
+      <CollapseHeader style={styles.header}><Text>{vegetable.id} </Text></CollapseHeader>
+      <CollapseBody style={styles.body}><Text>
+        Optimal Soil: {vegetable.data.OptimalSoil}{"\n"}{"\n"}
+        Watering: {vegetable.data.Watering}{"\n"}{"\n"}
+        Optimal Sun: {vegetable.data.OptimalSun}{"\n"}{"\n"}
+        When to Plant: {vegetable.data.WhenToPlant}{"\n"}{"\n"}
+        Care: {vegetable.data.Care}{"\n"}{"\n"}
+        Spacing: {vegetable.data.Spacing}{"\n"}{"\n"}
+        Planting Considerations: {vegetable.data.PlantingConsiderations}{"\n"}{"\n"}
+        Description: {vegetable.data.Description}{"\n"}
       </Text>
       </CollapseBody>
     </Collapse >
@@ -28,7 +28,10 @@ export default function VeggieCard(props) {
 const styles = StyleSheet.create({
   header: {
     borderColor: 'black',
-    borderWidth: 0.5, padding: 20, margin: 2
+    borderWidth: 0.5, padding: 20, margin: 2, alignItems: "center"
+  },
+  body: {
+    margin: 10, alignItems: "center"
   }
 })
 
