@@ -35,7 +35,7 @@ class CreateAccount extends Component {
     } = this.refs.form.getValue();
 
     const body = {
-      id: username,
+      id: Username,
       text: {
         Name,
         Username,
