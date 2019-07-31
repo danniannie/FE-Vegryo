@@ -1,81 +1,95 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, ScrollView, TextInput } from "react-native";
-import * as api from '../utils/api'
+import React, { Component } from "react";
+import t from "tcomb-form-native";
+import * as api from "../utils/api";
 
-export default class CreateAccount extends React.Component {
-  state = {
-    Name: '', Username: '', Email: '', GardenLength: '', GardenWidth: '', City: ''
-  }
-  render() {
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight
+} from "react-native";
 
-    return <ScrollView >
-      <Text>Create Account Page</Text>
-      <View style={styles.container}>
+const Form = t.form.Form;
 
-        <Text>Name:</Text>
-        <TextInput placeholder="Enter your name..." value={this.state.Name} onChangeText={(Name) => { this.setState({ Name }) }} style={
-          {
-            height: 50
-          }
+const Person = t.struct({
+  Name: t.String,
+  Username: t.String,
+  Email: t.String,
+  GardenLength: t.Number,
+  GardenWidth: t.Number,
+  City: t.String
+});
 
-        } />
-        <Text>Username:</Text>
-        <TextInput placeholder="Username" value={this.state.Username} onChangeText={(Username) => { this.setState({ Username }) }} style={
-          {
-            height: 50
-          }
+const options = {};
 
-        } />
-        <Text>Email:</Text>
-        <TextInput placeholder="Email" value={this.state.Email} onChangeText={(Email) => { this.setState({ Email }) }} style={
-          {
-            height: 50
-          }
+class CreateAccount extends Component {
+  onPress = () => {
+    const {
+      Username,
+      Name,
+      Email,
+      GardenLength,
+      GardenWidth,
+      City
+    } = this.refs.form.getValue();
 
-        } />
-        <Text> Garden Length:</Text>
-        <TextInput placeholder="In cm please" value={this.state.GardenLength} onChangeText={(GardenLength) => { this.setState({ GardenLength }) }} style={
-          {
-            height: 50
-          }
-
-        } />
-        <Text> Garden Width:</Text>
-        <TextInput placeholder="Name" value={this.state.GardenWidth} onChangeText={(GardenWidth) => { this.setState({ GardenWidth }) }} style={
-          {
-            height: 50
-          }
-
-        } />
-        <Text> City:</Text>
-        <TextInput placeholder="City" value={this.state.City} onChangeText={(City) => { this.setState({ City }) }} style={
-          {
-            height: 50
-          }
-
-        } />
-        <Button title='Submit' onPress={this.handleSubmit}></Button>
-      </View>
-    </ScrollView>;
-  }
-
-  handleSubmit = (event) => {
-    const { Name, Username, Email, GardenLength, GardenWidth, City } = this.state
     const body = {
-      id: Username, text: {
-        Name, Username, Email, GardenLength, GardenWidth, City
+      id: username,
+      text: {
+        Name,
+        Username,
+        Email,
+        GardenLength,
+        GardenWidth,
+        City
       }
+    };
+
+    if (body) {
+      console.log(body);
+      api.postNewUser(body).then(user => console.log(user));
     }
-    api.postNewUser(body).then(user => console.log(user))
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Form ref="form" type={Person} options={options} />
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.onPress}
+          underlayColor="#99d9f4"
+        >
+          <Text style={styles.buttonText}>Save</Text>
+        </TouchableHighlight>
+      </View>
+    );
   }
-
-
 }
-const styles = StyleSheet.create({
+
+var styles = StyleSheet.create({
   container: {
-    alignItems: "center", margin: 100
+    justifyContent: "center",
+    marginTop: 50,
+    padding: 20,
+    backgroundColor: "#ffffff"
+  },
+  buttonText: {
+    fontSize: 18,
+    color: "white",
+    alignSelf: "center"
+  },
+  button: {
+    height: 36,
+    backgroundColor: "#48BBEC",
+    borderColor: "#48BBEC",
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    alignSelf: "stretch",
+    justifyContent: "center"
   }
+});
 
-
-
-})
+export default CreateAccount;
