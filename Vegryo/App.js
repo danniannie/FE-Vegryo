@@ -17,7 +17,6 @@ export default class App extends Component {
     vegetableLayout: []
   }
   render() {
-    console.log(this.state, 'state')
     return (<AppNavigator screenProps={{ addVegetableLayout: this.addVegetableLayout }} />)
   }
   addVegetableLayout = (vegetableLayout) => {

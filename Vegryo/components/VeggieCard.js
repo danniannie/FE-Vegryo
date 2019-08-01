@@ -7,6 +7,10 @@ import {
 } from "accordion-collapse-react-native";
 
 export default class VeggieCard extends React.Component {
+  state = {
+    disabled: false,
+    disabledRemove: true
+  }
   render() {
     const { vegetable, count = 0 } = this.props;
     const Picture =
@@ -22,19 +26,17 @@ export default class VeggieCard extends React.Component {
             title="Add"
             style={styles.button}
             onPress={() => {
-              this.select();
+              this.select("add");
             }}
+            disabled={this.state.disabled}
           />
           <Button
             title="Remove"
             style={styles.button}
-          // onPress={() => {
-          //   if (count === 0) {
-          //     disabled = true;
-          //   } else {
-          //     this.select(-1);
-          //   }
-          // }}
+            onPress={() => {
+              this.select('remove')
+            }}
+            disabled={this.state.disabledRemove}
           />
           <Image
             style={{ width: 130, height: 140 }}
@@ -44,7 +46,6 @@ export default class VeggieCard extends React.Component {
           />
           <Text>
             {vegetable.id}
-            {/* count: {count} */}
             {"\n"}
             {"\n"}
             Optimal Soil: {vegetable.data.OptimalSoil}
@@ -76,11 +77,17 @@ export default class VeggieCard extends React.Component {
     );
   }
 
-  select = () => {
-    const { vegetable } = this.props
-    const { handleClick } = this.props;
-    console.log(vegetable.id, vegetable.data.Spacing)
-    handleClick(vegetable.id, vegetable.data.Spacing);
+  select = (option) => {
+    const { vegetable, handleAdd, handleRemove } = this.props
+
+    if (option === 'add') {
+      handleAdd(vegetable.id, vegetable.data.Spacing);
+      this.setState({ disabled: true, disabledRemove: false })
+    }
+    else {
+      handleRemove(vegetable.id)
+      this.setState({ disabled: false, disabledRemove: true })
+    }
   };
 }
 

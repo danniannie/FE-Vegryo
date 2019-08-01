@@ -4,17 +4,17 @@ import VeggieCard from "../components/VeggieCard";
 import AnimatedCarrot from "../components/LoadingCard";
 import * as api from "../utils/api";
 import gardenDesign from '../utils/utils'
+import { update, Object } from "tcomb";
 
 export default class Vegetables extends React.Component {
   state = {
     vegetables: [],
-    selectedVeggies: [],
+    selectedVeggies: {},
     isLoading: true
   };
   render() {
 
     const { vegetables, isLoading } = this.state;
-
 
     return (
       <ScrollView>
@@ -25,7 +25,8 @@ export default class Vegetables extends React.Component {
               <VeggieCard
                 vegetable={vegetable}
                 key={vegetable.id}
-                handleClick={this.handleClick}
+                handleAdd={this.handleAdd}
+                handleRemove={this.handleRemove}
               />
             ))
           )}
@@ -50,17 +51,25 @@ export default class Vegetables extends React.Component {
     this.props.navigation.navigate("MyGarden")
   }
 
-  handleClick = (id, spacing) => {
+  handleAdd = (id, spacing) => {
     const { selectedVeggies } = this.state;
-    if (!selectedVeggies.includes(id)) {
-      selectedVeggies.push({ [id]: spacing })
+
+    if (!selectedVeggies[id]) {
+      selectedVeggies[id] = spacing;
+      this.setState({ selectedVeggies })
     }
-    console.log(selectedVeggies)
-    this.setState({ selectedVeggies });
+
   };
+
+  handleRemove = (id) => {
+    const { selectedVeggies } = this.state;
+
+    if (selectedVeggies[id]) {
+      delete selectedVeggies[id]
+
+      this.setState({ selectedVeggies })
+    }
+
+  }
 }
 
-
-//take the vegetable name
-//check if its already in the array
-// if it 
