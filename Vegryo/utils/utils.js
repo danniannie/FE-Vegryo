@@ -16,5 +16,4 @@ const gardenDesign = (vegetables, height, width) => {
 
 module.exports = gardenDesign
 
-//take an object with vegetables
  //get the garden spacing information from the user >> do we store this in the app state too?
