@@ -8,12 +8,12 @@ import gardenDesign from '../utils/utils'
 export default class Vegetables extends React.Component {
   state = {
     vegetables: [],
-    count: {},
+    selectedVeggies: [],
     isLoading: true
   };
   render() {
 
-    const { vegetables, count, isLoading } = this.state;
+    const { vegetables, isLoading } = this.state;
 
 
     return (
@@ -26,7 +26,6 @@ export default class Vegetables extends React.Component {
                 vegetable={vegetable}
                 key={vegetable.id}
                 handleClick={this.handleClick}
-                count={count[vegetable.id]}
               />
             ))
           )}
@@ -46,18 +45,22 @@ export default class Vegetables extends React.Component {
 
   onPress = () => {
     const { addVegetableLayout } = this.props.screenProps
-    const vegetableLayout = gardenDesign(this.state.vegetables, 100, 100)
+    const vegetableLayout = gardenDesign(this.state.selectedVeggies, 100, 100)
     addVegetableLayout(vegetableLayout)
     this.props.navigation.navigate("MyGarden")
   }
 
-  handleClick = (id, increment) => {
-    const { count } = this.state;
-    if (count[id]) {
-      count[id] += increment;
-    } else {
-      count[id] = increment;
+  handleClick = (id, spacing) => {
+    const { selectedVeggies } = this.state;
+    if (!selectedVeggies.includes(id)) {
+      selectedVeggies.push({ [id]: spacing })
     }
-    this.setState({ count });
+    console.log(selectedVeggies)
+    this.setState({ selectedVeggies });
   };
 }
+
+
+//take the vegetable name
+//check if its already in the array
+// if it 

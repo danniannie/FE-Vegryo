@@ -19,22 +19,22 @@ export default class VeggieCard extends React.Component {
         </CollapseHeader>
         <CollapseBody style={styles.body}>
           <Button
-            title="+"
+            title="Add"
             style={styles.button}
             onPress={() => {
-              this.vote(1);
+              this.select();
             }}
           />
           <Button
-            title="-"
+            title="Remove"
             style={styles.button}
-            onPress={() => {
-              if (count === 0) {
-                disabled = true;
-              } else {
-                this.vote(-1);
-              }
-            }}
+          // onPress={() => {
+          //   if (count === 0) {
+          //     disabled = true;
+          //   } else {
+          //     this.select(-1);
+          //   }
+          // }}
           />
           <Image
             style={{ width: 130, height: 140 }}
@@ -43,7 +43,8 @@ export default class VeggieCard extends React.Component {
             }}
           />
           <Text>
-            {vegetable.id} count: {count}
+            {vegetable.id}
+            {/* count: {count} */}
             {"\n"}
             {"\n"}
             Optimal Soil: {vegetable.data.OptimalSoil}
@@ -75,10 +76,11 @@ export default class VeggieCard extends React.Component {
     );
   }
 
-  vote = increment => {
-    const { id } = this.props.vegetable;
-    const { vegetable, handleClick } = this.props;
-    handleClick(id, increment);
+  select = () => {
+    const { vegetable } = this.props
+    const { handleClick } = this.props;
+    console.log(vegetable.id, vegetable.data.Spacing)
+    handleClick(vegetable.id, vegetable.data.Spacing);
   };
 }
 
