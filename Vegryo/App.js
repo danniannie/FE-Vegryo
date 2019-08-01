@@ -13,11 +13,16 @@ import WelcomePage from "./screens/WelcomePage";
 import AppNavigator from './Routes/AppNavigator'
 
 export default class App extends Component {
-
-  render() {
-    return (<AppNavigator />)
+  state = {
+    vegetableLayout: []
   }
-
+  render() {
+    console.log(this.state, 'state')
+    return (<AppNavigator screenProps={{ addVegetableLayout: this.addVegetableLayout }} />)
+  }
+  addVegetableLayout = (vegetableLayout) => {
+    this.setState({ vegetableLayout })
+  }
 }
 
 // const BottomNav = createBottomTabNavigator(
