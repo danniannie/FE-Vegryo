@@ -11,14 +11,6 @@ const gardenDesign = (vegetables, height, width) => {
     return vegetableArea.push({ [indVegetable]: vegetableCount })
   });
 
-  // let numberVeggies = []
-  // vegetableArea.forEach((veggie) => {
-  //   let veggieKey = Object.keys(veggie)
-  //   let indVeggie = veggieKey[0]
-
-  //   return numberVeggies.push({ [indVeggie]: vegetableCount })
-  // })
-
   return vegetableArea
 }
 
