@@ -4,23 +4,23 @@ import DraggableFlatList from "react-native-draggable-flatlist";
 
 class MyGarden extends Component {
   state = {
-    data: ["carrot", "broccoli", "asparagus"].map((d, index) => ({
-      key: `item-${index}`,
-      label: d,
-      backgroundColor: "red"
-    })),
+    data: ["carrot", "broccoli", "asparagus", "leek", "cabbage", "potato"].map(
+      (d, index) => ({
+        key: `item-${index}`,
+        label: d
+      })
+    ),
     selectedVeg: ""
   };
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
-    console.log(item);
     return (
       <View style={{ height: 400 / this.state.data.length }}>
         <TouchableOpacity
           style={{
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: isActive ? "orange" : item.backgroundColor,
+            backgroundColor: isActive ? "rgba(104,120,43,0.6)" : null,
             margin: 5,
             borderRadius: 2
           }}
