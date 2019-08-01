@@ -5,7 +5,7 @@ import {
 } from "react-navigation";
 import { Icon } from "react-native-vector-icons/Ionicons";
 import Home from "./screens/Home";
-import MyGarden from "./screens/MyGarden";
+import MyGarden from "./screens/MyGarden1";
 import Vegetables from "./screens/Vegetables";
 import CreateAccount from "./screens/CreateAccount";
 import WelcomePage from "./screens/WelcomePage";
