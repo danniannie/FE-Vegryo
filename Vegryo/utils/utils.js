@@ -7,18 +7,19 @@ const gardenDesign = (vegetables, height, width) => {
     let vegetableKey = Object.keys(vegetable)
     let indVegetable = vegetableKey[0]
     let vegSpacing = Math.pow(vegetable[indVegetable], 2)
-    return vegetableArea.push({ [indVegetable]: vegSpacing })
+    let vegetableCount = Math.floor(sectionSpace / vegSpacing)
+    return vegetableArea.push({ [indVegetable]: vegetableCount })
   });
 
-  let numberVeggies = []
-  vegetableArea.forEach((veggie) => {
-    let veggieKey = Object.keys(veggie)
-    let indVeggie = veggieKey[0]
-    let vegetableCount = Math.floor(sectionSpace / veggie[indVeggie])
-    return numberVeggies.push({ [indVeggie]: vegetableCount })
-  })
+  // let numberVeggies = []
+  // vegetableArea.forEach((veggie) => {
+  //   let veggieKey = Object.keys(veggie)
+  //   let indVeggie = veggieKey[0]
 
-  return numberVeggies
+  //   return numberVeggies.push({ [indVeggie]: vegetableCount })
+  // })
+
+  return vegetableArea
 }
 
 module.exports = gardenDesign
