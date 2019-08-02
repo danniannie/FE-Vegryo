@@ -4,7 +4,6 @@ import VeggieCard from "../components/VeggieCard";
 import AnimatedCarrot from "../components/LoadingCard";
 import * as api from "../utils/api";
 import gardenDesign from "../utils/utils";
-import { update, Object } from "tcomb";
 
 export default class Vegetables extends React.Component {
   state = {
@@ -41,14 +40,14 @@ export default class Vegetables extends React.Component {
   }
 
   onPress = () => {
-    const { addVegetableLayout, height, width } = this.props.screenProps;
+    const { screenProps, navigation } = this.props;
     const vegetableLayout = gardenDesign(
       this.state.selectedVeggies,
-      height,
-      width
+      screenProps.height,
+      screenProps.width
     );
-    addVegetableLayout(vegetableLayout);
-    this.props.navigation.navigate("MyGarden");
+    screenProps.addVegetableLayout(vegetableLayout);
+    navigation.navigate("MyGarden");
   };
 
   handleAdd = (id, spacing) => {
