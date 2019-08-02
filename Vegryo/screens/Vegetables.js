@@ -3,8 +3,9 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import VeggieCard from "../components/VeggieCard";
 import AnimatedCarrot from "../components/LoadingCard";
 import * as api from "../utils/api";
+
 import { gardenDesign } from "../utils/utils";
-import { update, Object } from "tcomb";
+
 
 export default class Vegetables extends React.Component {
   state = {
@@ -42,14 +43,13 @@ export default class Vegetables extends React.Component {
   }
 
   onPress = () => {
-    const {
-      addVegetableLayout,
-      height,
-      width,
-      selectedVeggies
-    } = this.props.screenProps;
-    const vegetableLayout = gardenDesign(selectedVeggies, height, width);
-    addVegetableLayout(vegetableLayout);
-    this.props.navigation.navigate("MyGarden");
+    const { screenProps, navigation } = this.props;
+    const vegetableLayout = gardenDesign(
+      this.state.selectedVeggies,
+      screenProps.height,
+      screenProps.width
+    );
+    screenProps.addVegetableLayout(vegetableLayout);
+    navigation.navigate("MyGarden");
   };
 }

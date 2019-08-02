@@ -9,7 +9,6 @@ const gardenDesign = (vegetables, height, width) => {
     let vegetableCount = Math.floor(sectionSpace / vegSpacing);
     return vegetableArea.push({ [vegetable]: vegetableCount });
   });
-  console.log(vegetableArea, "function output");
   return vegetableArea;
 };
 
