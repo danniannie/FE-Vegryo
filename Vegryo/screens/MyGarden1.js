@@ -4,12 +4,14 @@ import DraggableFlatList from "react-native-draggable-flatlist";
 
 class MyGarden extends Component {
   state = {
-    data: ["carrot", "broccoli", "asparagus", "leek", "cabbage", "potato"].map(
-      (d, index) => ({
+    data: this.props.screenProps.vegetableLayout
+      .reduce((acc, veg) => {
+        return [...acc, Object.keys(veg)];
+      }, [])
+      .map((veg, index) => ({
         key: `item-${index}`,
-        label: d
-      })
-    ),
+        label: veg
+      })),
     selectedVeg: ""
   };
 
@@ -46,6 +48,7 @@ class MyGarden extends Component {
   };
 
   render() {
+    console.log(this.props.screenProps.vegetableLayout, "<<<<<< PROPS");
     const Soil =
       "https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/e7c4af71-cdf1-4627-bfc2-5e9e4500ee10_scaled.jpg";
     return (
