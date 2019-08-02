@@ -3,34 +3,36 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import VeggieCard from "../components/VeggieCard";
 import AnimatedCarrot from "../components/LoadingCard";
 import * as api from "../utils/api";
+import gardenDesign from '../utils/utils'
+import { update, Object } from "tcomb";
 
 export default class Vegetables extends React.Component {
   state = {
     vegetables: [],
-    count: {},
+    selectedVeggies: {},
     isLoading: true
   };
   render() {
-    const { vegetables, count, isLoading } = this.state;
+
+    const { vegetables, isLoading } = this.state;
+
     return (
       <ScrollView>
         {isLoading ? (
           <AnimatedCarrot />
         ) : (
-          vegetables.map((vegetable) => (
-            <VeggieCard
-              vegetable={vegetable}
-              key={vegetable.id}
-              handleClick={this.handleClick}
-              count={count[vegetable.id]}
-            />
-          ))
-        )}
+            vegetables.map((vegetable) => (
+              <VeggieCard
+                vegetable={vegetable}
+                key={vegetable.id}
+                handleAdd={this.handleAdd}
+                handleRemove={this.handleRemove}
+              />
+            ))
+          )}
         <Button
           title="Build your Garden"
-          onPress={() => {
-            this.props.navigation.navigate("MyGarden");
-          }}
+          onPress={this.onPress}
         />
       </ScrollView>
     );
@@ -42,13 +44,32 @@ export default class Vegetables extends React.Component {
       .then((vegetables) => this.setState({ vegetables, isLoading: false }));
   }
 
-  handleClick = (id, increment) => {
-    const { count } = this.state;
-    if (count[id]) {
-      count[id] += increment;
-    } else {
-      count[id] = increment;
+  onPress = () => {
+    const { addVegetableLayout } = this.props.screenProps
+    const vegetableLayout = gardenDesign(this.state.selectedVeggies, 100, 100)
+    addVegetableLayout(vegetableLayout)
+    this.props.navigation.navigate("MyGarden")
+  }
+
+  handleAdd = (id, spacing) => {
+    const { selectedVeggies } = this.state;
+
+    if (!selectedVeggies[id]) {
+      selectedVeggies[id] = spacing;
+      this.setState({ selectedVeggies })
     }
-    this.setState({ count });
+
   };
+
+  handleRemove = (id) => {
+    const { selectedVeggies } = this.state;
+
+    if (selectedVeggies[id]) {
+      delete selectedVeggies[id]
+
+      this.setState({ selectedVeggies })
+    }
+
+  }
 }
+
