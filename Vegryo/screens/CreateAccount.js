@@ -49,7 +49,11 @@ class CreateAccount extends Component {
     };
 
     if (body) {
-      api.postNewUser(body).then(user => console.log(user));
+      api
+        .postNewUser(body)
+        .then((user) =>
+          this.props.screenProps.addDimensions(GardenLength, GardenWidth)
+        );
     }
   };
 

@@ -4,13 +4,20 @@ import DraggableFlatList from "react-native-draggable-flatlist";
 
 class MyGarden extends Component {
   state = {
-    data: ["carrot", "broccoli", "asparagus", "leek", "cabbage", "potato"].map(
-      (d, index) => ({
+    seedLookUp: this.props.screenProps.vegetableLayout.reduce((acc, veg) => {
+      return { ...acc, [Object.keys(veg)]: Object.values(veg) };
+    }, {}),
+    data: this.props.screenProps.vegetableLayout
+      .reduce((acc, veg) => {
+        let key = Object.keys(veg);
+        return [...acc, key];
+      }, [])
+      .map((veg, index) => ({
         key: `item-${index}`,
-        label: d
-      })
-    ),
-    selectedVeg: ""
+        label: veg
+      })),
+    selectedVeg: "",
+    gardenArea: this.props.screenProps.height * this.props.screenProps.width
   };
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
@@ -39,6 +46,8 @@ class MyGarden extends Component {
             }}
           >
             {item.label}
+            {` `}
+            {this.state.seedLookUp[item.label]}
           </Text>
         </TouchableOpacity>
       </View>
@@ -79,7 +88,14 @@ class MyGarden extends Component {
             margin: 20
           }}
         >
-          <Text>{this.state.selectedVeg}</Text>
+          <Text>
+            {this.state.selectedVeg}
+            {this.state.seedLookUp[this.state.selectedVeg]}
+            {"\n"}
+            {`Row area: ${Math.floor(
+              this.state.gardenArea / this.state.data.length / 100
+            ) || 0}cm2`}
+          </Text>
         </View>
       </View>
     );
