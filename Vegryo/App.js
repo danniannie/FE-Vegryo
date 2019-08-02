@@ -16,8 +16,10 @@ export default class App extends Component {
   state = {
     vegetableLayout: [],
     height: 0,
-    width: 0
+    width: 0,
+    selectedVeggies: {}
   };
+
   render() {
     return (
       <AppNavigator
@@ -26,7 +28,10 @@ export default class App extends Component {
           addDimensions: this.addDimensions,
           height: this.state.height,
           width: this.state.width,
-          vegetableLayout: this.state.vegetableLayout
+          vegetableLayout: this.state.vegetableLayout,
+          handleAdd: this.handleAdd,
+          handleRemove: this.handleRemove,
+          selectedVeggies: this.state.selectedVeggies
         }}
       />
     );
@@ -36,6 +41,25 @@ export default class App extends Component {
   };
   addDimensions = (height, width) => {
     this.setState({ height, width });
+  };
+
+  handleAdd = (id, spacing) => {
+    const { selectedVeggies } = this.state;
+
+    if (!selectedVeggies[id]) {
+      selectedVeggies[id] = spacing;
+      this.setState({ ...selectedVeggies, selectedVeggies });
+    }
+  };
+
+  handleRemove = id => {
+    const { selectedVeggies } = this.state;
+
+    if (selectedVeggies[id]) {
+      delete selectedVeggies[id];
+
+      this.setState({ ...selectedVeggies, selectedVeggies });
+    }
   };
 }
 

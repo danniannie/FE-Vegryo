@@ -9,7 +9,6 @@ import { update, Object } from "tcomb";
 export default class Vegetables extends React.Component {
   state = {
     vegetables: [],
-    selectedVeggies: {},
     isLoading: true
   };
   render() {
@@ -20,12 +19,15 @@ export default class Vegetables extends React.Component {
         {isLoading ? (
           <AnimatedCarrot />
         ) : (
-          vegetables.map((vegetable) => (
+          vegetables.map(vegetable => (
             <VeggieCard
               vegetable={vegetable}
               key={vegetable.id}
-              handleAdd={this.handleAdd}
-              handleRemove={this.handleRemove}
+              handleAdd={this.props.screenProps.handleAdd}
+              handleRemove={this.props.screenProps.handleRemove}
+              disabled={this.props.screenProps.disabled}
+              disabledRemove={this.props.screenProps.disabledRemove}
+              buttonState={this.props.screenProps.buttonState}
             />
           ))
         )}
@@ -37,36 +39,37 @@ export default class Vegetables extends React.Component {
   componentDidMount() {
     api
       .getAllVeggies()
-      .then((vegetables) => this.setState({ vegetables, isLoading: false }));
+      .then(vegetables => this.setState({ vegetables, isLoading: false }));
   }
 
   onPress = () => {
-    const { addVegetableLayout, height, width } = this.props.screenProps;
-    const vegetableLayout = gardenDesign(
-      this.state.selectedVeggies,
+    const {
+      addVegetableLayout,
       height,
-      width
-    );
+      width,
+      selectedVeggies
+    } = this.props.screenProps;
+    const vegetableLayout = gardenDesign(selectedVeggies, height, width);
     addVegetableLayout(vegetableLayout);
     this.props.navigation.navigate("MyGarden");
   };
 
-  handleAdd = (id, spacing) => {
-    const { selectedVeggies } = this.state;
+  // handleAdd = (id, spacing) => {
+  //   const { selectedVeggies } = this.state;
 
-    if (!selectedVeggies[id]) {
-      selectedVeggies[id] = spacing;
-      this.setState({ selectedVeggies });
-    }
-  };
+  //   if (!selectedVeggies[id]) {
+  //     selectedVeggies[id] = spacing;
+  //     this.setState({ selectedVeggies });
+  //   }
+  // };
 
-  handleRemove = (id) => {
-    const { selectedVeggies } = this.state;
+  // handleRemove = (id) => {
+  //   const { selectedVeggies } = this.state;
 
-    if (selectedVeggies[id]) {
-      delete selectedVeggies[id];
+  //   if (selectedVeggies[id]) {
+  //     delete selectedVeggies[id];
 
-      this.setState({ selectedVeggies });
-    }
-  };
+  //     this.setState({ selectedVeggies });
+  //   }
+  // };
 }

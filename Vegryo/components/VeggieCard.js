@@ -10,9 +10,9 @@ export default class VeggieCard extends React.Component {
   state = {
     disabled: false,
     disabledRemove: true
-  }
+  };
   render() {
-    const { vegetable, count = 0 } = this.props;
+    const { vegetable } = this.props;
     const Picture =
       vegetable.data.Picture ||
       "https://www.simplyrecipes.com/wp-content/uploads/2015/04/roasted-asparagus-horiz-a-1600.jpg";
@@ -34,7 +34,7 @@ export default class VeggieCard extends React.Component {
             title="Remove"
             style={styles.button}
             onPress={() => {
-              this.select('remove')
+              this.select("remove");
             }}
             disabled={this.state.disabledRemove}
           />
@@ -77,16 +77,15 @@ export default class VeggieCard extends React.Component {
     );
   }
 
-  select = (option) => {
-    const { vegetable, handleAdd, handleRemove } = this.props
+  select = option => {
+    const { vegetable, handleAdd, handleRemove } = this.props;
 
-    if (option === 'add') {
+    if (option === "add") {
       handleAdd(vegetable.id, vegetable.data.Spacing);
-      this.setState({ disabled: true, disabledRemove: false })
-    }
-    else {
-      handleRemove(vegetable.id)
-      this.setState({ disabled: false, disabledRemove: true })
+      this.setState({ disabled: true, disabledRemove: false });
+    } else {
+      handleRemove(vegetable.id);
+      this.setState({ disabled: false, disabledRemove: true });
     }
   };
 }
