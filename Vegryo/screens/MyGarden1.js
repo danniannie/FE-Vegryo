@@ -4,15 +4,20 @@ import DraggableFlatList from "react-native-draggable-flatlist";
 
 class MyGarden extends Component {
   state = {
+    seedLookUp: this.props.screenProps.vegetableLayout.reduce((acc, veg) => {
+      return { ...acc, [Object.keys(veg)]: Object.values(veg) };
+    }, {}),
     data: this.props.screenProps.vegetableLayout
       .reduce((acc, veg) => {
-        return [...acc, Object.keys(veg)];
+        let key = Object.keys(veg);
+        return [...acc, key];
       }, [])
       .map((veg, index) => ({
         key: `item-${index}`,
         label: veg
       })),
-    selectedVeg: ""
+    selectedVeg: "",
+    gardenArea: this.props.screenProps.height * this.props.screenProps.width
   };
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
@@ -41,6 +46,8 @@ class MyGarden extends Component {
             }}
           >
             {item.label}
+            {` `}
+            {this.state.seedLookUp[item.label]}
           </Text>
         </TouchableOpacity>
       </View>
@@ -48,7 +55,6 @@ class MyGarden extends Component {
   };
 
   render() {
-    console.log(this.props.screenProps.vegetableLayout, "<<<<<< PROPS");
     const Soil =
       "https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/e7c4af71-cdf1-4627-bfc2-5e9e4500ee10_scaled.jpg";
     return (
@@ -82,7 +88,14 @@ class MyGarden extends Component {
             margin: 20
           }}
         >
-          <Text>{this.state.selectedVeg}</Text>
+          <Text>
+            {this.state.selectedVeg}
+            {this.state.seedLookUp[this.state.selectedVeg]}
+            {"\n"}
+            {`Row area: ${Math.floor(
+              this.state.gardenArea / this.state.data.length / 100
+            ) || 0}cm2`}
+          </Text>
         </View>
       </View>
     );

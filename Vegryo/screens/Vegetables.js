@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
 import VeggieCard from "../components/VeggieCard";
 import AnimatedCarrot from "../components/LoadingCard";
 import * as api from "../utils/api";
-import gardenDesign from "../utils/utils";
+import { gardenDesign } from "../utils/utils";
 import { update, Object } from "tcomb";
 
 export default class Vegetables extends React.Component {
@@ -21,8 +21,6 @@ export default class Vegetables extends React.Component {
           <AnimatedCarrot />
         ) : (
           vegetables.map(vegetable => (
-            //componentdid mount will look at veggie card and update button status
-
             <VeggieCard
               vegetable={vegetable}
               key={vegetable.id}
@@ -54,23 +52,4 @@ export default class Vegetables extends React.Component {
     addVegetableLayout(vegetableLayout);
     this.props.navigation.navigate("MyGarden");
   };
-
-  // handleAdd = (id, spacing) => {
-  //   const { selectedVeggies } = this.state;
-
-  //   if (!selectedVeggies[id]) {
-  //     selectedVeggies[id] = spacing;
-  //     this.setState({ selectedVeggies });
-  //   }
-  // };
-
-  // handleRemove = (id) => {
-  //   const { selectedVeggies } = this.state;
-
-  //   if (selectedVeggies[id]) {
-  //     delete selectedVeggies[id];
-
-  //     this.setState({ selectedVeggies });
-  //   }
-  // };
 }
