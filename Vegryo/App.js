@@ -25,12 +25,13 @@ export default class App extends Component {
           addVegetableLayout: this.addVegetableLayout,
           addDimensions: this.addDimensions,
           height: this.state.height,
-          width: this.state.width
+          width: this.state.width,
+          vegetableLayout: this.state.vegetableLayout
         }}
       />
     );
   }
-  addVegetableLayout = (vegetableLayout) => {
+  addVegetableLayout = vegetableLayout => {
     this.setState({ vegetableLayout });
   };
   addDimensions = (height, width) => {
