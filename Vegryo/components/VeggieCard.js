@@ -13,6 +13,7 @@ export default class VeggieCard extends React.Component {
   };
   render() {
     const { vegetable } = this.props;
+
     const Picture =
       vegetable.data.Picture ||
       "https://www.simplyrecipes.com/wp-content/uploads/2015/04/roasted-asparagus-horiz-a-1600.jpg";
@@ -77,9 +78,17 @@ export default class VeggieCard extends React.Component {
     );
   }
 
+  componentDidMount = () => {
+    const { veggieHere } = this.props;
+    if (veggieHere === true) {
+      this.setState({ disabled: true, disabledRemove: false });
+    } else {
+      this.setState({ disabled: false, disabledRemove: true });
+    }
+  };
+
   select = option => {
     const { vegetable, handleAdd, handleRemove } = this.props;
-
     if (option === "add") {
       handleAdd(vegetable.id, vegetable.data.Spacing);
       this.setState({ disabled: true, disabledRemove: false });
@@ -89,6 +98,8 @@ export default class VeggieCard extends React.Component {
     }
   };
 }
+
+/*  */
 
 const styles = StyleSheet.create({
   header: {

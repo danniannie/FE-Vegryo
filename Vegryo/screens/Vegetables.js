@@ -13,6 +13,7 @@ export default class Vegetables extends React.Component {
   };
   render() {
     const { vegetables, isLoading } = this.state;
+    const { selectedVeggies } = this.props.screenProps;
 
     return (
       <ScrollView>
@@ -20,14 +21,14 @@ export default class Vegetables extends React.Component {
           <AnimatedCarrot />
         ) : (
           vegetables.map(vegetable => (
+            //componentdid mount will look at veggie card and update button status
+
             <VeggieCard
               vegetable={vegetable}
               key={vegetable.id}
               handleAdd={this.props.screenProps.handleAdd}
               handleRemove={this.props.screenProps.handleRemove}
-              disabled={this.props.screenProps.disabled}
-              disabledRemove={this.props.screenProps.disabledRemove}
-              buttonState={this.props.screenProps.buttonState}
+              veggieHere={selectedVeggies.hasOwnProperty(vegetable.id)}
             />
           ))
         )}
