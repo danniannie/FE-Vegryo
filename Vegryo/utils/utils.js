@@ -4,7 +4,7 @@ const gardenDesign = (vegetables, height, width) => {
   let sectionSpace = area / veggieKeys.length;
   let vegetableArea = [];
 
-  veggieKeys.forEach((vegetable) => {
+  veggieKeys.forEach(vegetable => {
     let vegSpacing = Math.pow(vegetables[vegetable], 2);
     let vegetableCount = Math.floor(sectionSpace / vegSpacing);
     return vegetableArea.push({ [vegetable]: vegetableCount });
@@ -12,4 +12,4 @@ const gardenDesign = (vegetables, height, width) => {
   return vegetableArea;
 };
 
-module.exports = gardenDesign;
+module.exports = { gardenDesign };

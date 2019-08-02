@@ -15,8 +15,8 @@ import AppNavigator from "./Routes/AppNavigator";
 export default class App extends Component {
   state = {
     vegetableLayout: [],
-    height: 0,
-    width: 0,
+    height: 1000,
+    width: 1000,
     selectedVeggies: {}
   };
 
