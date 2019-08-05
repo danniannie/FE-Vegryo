@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
 
+
 class MyGarden extends Component {
   state = {
     seedLookUp: this.props.screenProps.vegetableLayout.reduce((acc, veg) => {
@@ -30,8 +31,10 @@ class MyGarden extends Component {
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: isActive ? "rgba(104,120,43,0.6)" : null,
-            margin: 5,
-            borderRadius: 2
+            margin: isActive ? 5 : 1,
+            borderRadius: 2,
+            borderWidth: isActive ? null : 1,
+            borderColor: isActive ? null : "#CD853F"
           }}
           onPress={() => {
             this.setState({ selectedVeg: item.label });
@@ -92,6 +95,9 @@ class MyGarden extends Component {
       </View>
     );
   }
+
+
+
 }
 
 export default MyGarden;
