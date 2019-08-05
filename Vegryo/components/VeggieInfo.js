@@ -1,10 +1,20 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
+import { getUserById } from "../utils/api.js";
 
 export default class VeggieInfo extends Component {
-  state = {};
+  state = {
+    user: "Old McDonald"
+  };
   render() {
+    const {
+      selectedVeg,
+      seedLookUp,
+      gardenHeight,
+      ammountOfVeg,
+      gardenWidth
+    } = this.props;
     return (
       <View
         style={{
@@ -15,24 +25,24 @@ export default class VeggieInfo extends Component {
         }}
       >
         <Text>
-          {this.props.selectedVeg}
-          {this.props.selectedVeg ? ": " : null}
-          {this.props.seedLookUp[this.props.selectedVeg]}
+          {selectedVeg}
+          {selectedVeg ? ": " : null}
+          {seedLookUp[selectedVeg]}
           {"\n"}
-          {this.props.selectedVeg
-            ? `Row Height: ${Math.floor(
-                this.props.gardenHeight / this.props.ammountOfVeg
-              )}cm`
+          {selectedVeg
+            ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
             : null}
           {"\n"}
-          {this.props.selectedVeg
-            ? `Row Width: ${Math.floor(this.props.gardenWidth)}cm`
-            : null}
+          {selectedVeg ? `Row Width: ${Math.floor(gardenWidth)}cm` : null}
         </Text>
-        {this.props.selectedVeg ? (
+        {selectedVeg ? (
           <ProgressBar progress={0.4} width={200} color={"#FFA03A"} />
         ) : null}
       </View>
     );
   }
+
+  componentDidMount = () => {
+    getUserById().then(user => console.log(user));
+  };
 }
