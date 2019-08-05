@@ -6,7 +6,6 @@ import * as api from "../utils/api";
 
 import { gardenDesign } from "../utils/utils";
 
-
 export default class Vegetables extends React.Component {
   state = {
     vegetables: [],
@@ -45,7 +44,7 @@ export default class Vegetables extends React.Component {
   onPress = () => {
     const { screenProps, navigation } = this.props;
     const vegetableLayout = gardenDesign(
-      this.state.selectedVeggies,
+      screenProps.selectedVeggies,
       screenProps.height,
       screenProps.width
     );
