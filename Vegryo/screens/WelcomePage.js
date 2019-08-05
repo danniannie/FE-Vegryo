@@ -12,6 +12,16 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <ScrollView>
+        <Text
+          style={{
+            textAlign: "center",
+            padding: 35,
+            fontSize: 20,
+            backgroundColor: "green"
+          }}
+        >
+          Welcome fellow Gardener!
+        </Text>
         <Weather />
         {this.state.veg.map(veggies => (
           <HomeVeggies key={veggies} veg={veggies} />

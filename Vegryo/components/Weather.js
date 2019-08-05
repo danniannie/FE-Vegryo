@@ -26,15 +26,20 @@ class Weather extends React.Component {
     return (
       <View style={styles.weather}>
         <Text style={styles.text}>
-          {city}, {country}
-          {"\n"}
-          {"\n"}
           {description.slice(0, 1).toUpperCase() + description.slice(1)} {"\n"}
           {"\n"}
           {temperature}
           {"\n"}
           {"\n"}
-          Humidity: {humidity}%
+          Humidity: {humidity}% {"\n"}
+        </Text>
+        <Text
+          style={{
+            fontSize: 30,
+            margin: 15
+          }}
+        >
+          {city}, {country}
         </Text>
         <Image
           style={{ width: 200, height: 200, position: "absolute", right: 0 }}
