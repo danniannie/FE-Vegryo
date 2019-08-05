@@ -42,7 +42,5 @@ export default class VeggieInfo extends Component {
     );
   }
 
-  componentDidMount = () => {
-    getUserById().then(user => console.log(user));
-  };
+
 }
