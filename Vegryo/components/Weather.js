@@ -21,7 +21,10 @@ class Weather extends React.Component {
       country,
       humidity,
       description,
-      sunPic
+      sunPic,
+      cloudPic,
+      rainPic,
+      thunderPic
     } = this.state;
     return (
       <View style={styles.weather}>
@@ -42,8 +45,8 @@ class Weather extends React.Component {
           {city}, {country}
         </Text>
         <Image
-          style={{ width: 200, height: 200, position: "absolute", right: 0 }}
-          source={sunPic}
+          style={{ width: 180, height: 180, position: "absolute", right: 0 }}
+          source={cloudPic}
         />
       </View>
     );
