@@ -24,9 +24,9 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 80,
+          height: 90,
           backgroundColor: "beige",
-          margin: 20
+          margin: 15
         }}
       >
         <Text>
