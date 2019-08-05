@@ -1,5 +1,4 @@
 import axios from "axios";
-import APIKEY from "../screens/config";
 
 
 export const getAllVeggies = async () => {
@@ -21,7 +20,7 @@ export const postNewUser = async body => {
 
 export const getWeather = async () => {
   const { data } = await axios.get(
-    `http://api.openweathermap.org/data/2.5/weather?q=Leeds,uk&APPID=${APIKEY}`
+    "http://api.openweathermap.org/data/2.5/weather?q=Leeds,uk&APPID=dd243f07a1e18750d6c508a09806ddf4"
   );
   return data;
 };
