@@ -1,4 +1,6 @@
 import axios from "axios";
+import APIKEY from "../screens/config";
+
 
 export const getAllVeggies = async () => {
   const { data } = await axios.get(
@@ -17,10 +19,16 @@ export const postNewUser = async body => {
   return data;
 };
 
-export const getUserById = async () => {
+export const getWeather = async () => {
   const { data } = await axios.get(
-    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/users/Old%McDonald"
+    `http://api.openweathermap.org/data/2.5/weather?q=Leeds,uk&APPID=${APIKEY}`
   );
-
   return data;
+};
+
+export const getUserbyID = async () => {
+  const { data } = await axios.get(
+    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/users/Old%20McDonald"
+  );
+ return data;
 };
