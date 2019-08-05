@@ -9,7 +9,10 @@ class Weather extends React.Component {
     country: "",
     humidity: "",
     description: "",
-    sunPic: require("../assets/sun.jpg")
+    sunPic: require("../assets/sun.jpg"),
+    cloudPic: require("../assets/cloudy.jpg"),
+    rainPic: require("../assets/rain.jpg"),
+    thunderPic: require("../assets/thunder.jpg")
   };
   render() {
     const {

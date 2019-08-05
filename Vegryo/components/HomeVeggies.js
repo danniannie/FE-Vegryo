@@ -1,13 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import * as api from "../utils/api";
 
 class HomeVeggies extends React.Component {
   render() {
     const { veg } = this.props;
     return (
-      <View>
-        <Text style={styles.veg}>{veg}</Text>
+      <View style={styles.veg}>
+        <Text style={styles.vegHeader}>
+          {veg}: {"\n"}
+        </Text>
+        <Text>Your {veg}'s will be ready to harvest in X days.</Text>
       </View>
     );
   }
@@ -17,6 +19,9 @@ const styles = StyleSheet.create({
     backgroundColor: "pink",
     margin: 10,
     padding: 40
+  },
+  vegHeader: {
+    fontSize: 18
   }
 });
 
