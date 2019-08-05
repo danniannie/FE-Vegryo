@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
-import moment from "moment";
 import { daysGrown } from "../utils/utils";
 
 export default class VeggieInfo extends Component {
