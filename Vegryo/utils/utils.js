@@ -12,4 +12,8 @@ const gardenDesign = (vegetables, height, width) => {
   return vegetableArea;
 };
 
-module.exports = { gardenDesign };
+const daysGrown = days => {
+  return (Date.now() - new Date(days * 1000)) / (1000 * 60 * 60 * 24);
+};
+
+module.exports = { gardenDesign, daysGrown };
