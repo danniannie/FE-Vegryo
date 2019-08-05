@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
+import VeggieInfo from "../components/VeggieInfo";
 
 class MyGarden extends Component {
   state = {
@@ -17,7 +18,8 @@ class MyGarden extends Component {
         label: veg
       })),
     selectedVeg: "",
-    gardenArea: this.props.screenProps.height * this.props.screenProps.width
+    gardenWidth: this.props.screenProps.width,
+    gardenHeight: this.props.screenProps.height
   };
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
@@ -80,23 +82,13 @@ class MyGarden extends Component {
             onMoveEnd={({ data }) => this.setState({ data })}
           />
         </View>
-        <View
-          style={{
-            width: "90%",
-            height: 80,
-            backgroundColor: "beige",
-            margin: 20
-          }}
-        >
-          <Text>
-            {this.state.selectedVeg}
-            {this.state.seedLookUp[this.state.selectedVeg]}
-            {"\n"}
-            {`Row area: ${Math.floor(
-              this.state.gardenArea / this.state.data.length / 100
-            ) || 0}cm2`}
-          </Text>
-        </View>
+        <VeggieInfo
+          selectedVeg={this.state.selectedVeg}
+          seedLookUp={this.state.seedLookUp}
+          ammountOfVeg={this.state.data.length}
+          gardenWidth={this.state.gardenWidth}
+          gardenHeight={this.state.gardenHeight}
+        />
       </View>
     );
   }
