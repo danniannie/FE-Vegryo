@@ -4,6 +4,7 @@ import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
 import { createData, createSeedLookup } from "../utils/utils"
 import * as api from "../utils/api"
+import { Overlay } from "react-native-elements"
 
 
 
@@ -15,7 +16,7 @@ class MyGarden extends Component {
     selectedVeg: "",
     gardenWidth: this.props.screenProps.width,
     gardenHeight: this.props.screenProps.height,
-    vegetables: {}
+    vegetables: {}, isVisible: true
   };
 
 
@@ -48,11 +49,15 @@ class MyGarden extends Component {
   };
 
   render() {
-
-    const Soil =
-      "http://m.espacepourlavie.ca/sites/espacepourlavie.ca/files/styles/nocrop-gr8/public/istock_000015226257_620px_0.jpg?itok=SCNt6MGy";
     return (
       <View>
+        <View>
+          <Overlay isVisible={this.state.isVisible} onBackdropPress={() => { this.setState({ isVisible: false }) }} style={{ overlayBackgroundColor: 'grey' }}>
+            <View>
+              <Text style={{ fontSize: 35, fontFamily: 'B612Mono-Regular' }}>Drag and drop to rearrange your garden, or click on each vegetable to see more information.</Text>
+              <TouchableOpacity onPress={() => { this.setState({ isVisible: false }) }}><Text style={{ fontSize: 30, fontFamily: 'B612Mono-Regular', color: "#ffa03a", paddingTop: 5 }}>Got it!</Text></TouchableOpacity>
+            </View>
+          </Overlay></View>
         <View style={{ height: 400, margin: 10 }}>
           <View
             style={{
