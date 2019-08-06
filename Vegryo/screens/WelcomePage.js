@@ -12,6 +12,7 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <ScrollView>
+
         <Weather />
         {this.state.veg.map(veggies => (
           <HomeVeggies key={veggies} veg={veggies} />
