@@ -2,22 +2,15 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
+import { createData, createSeedLookup } from "../utils/utils"
+
 
 
 class MyGarden extends Component {
   state = {
-    seedLookUp: this.props.screenProps.vegetableLayout.reduce((acc, veg) => {
-      return { ...acc, [Object.keys(veg)]: Object.values(veg) };
-    }, {}),
-    data: this.props.screenProps.vegetableLayout
-      .reduce((acc, veg) => {
-        let key = Object.keys(veg);
-        return [...acc, key];
-      }, [])
-      .map((veg, index) => ({
-        key: `item-${index}`,
-        label: veg
-      })),
+    seedLookUp: createSeedLookup(this.props.screenProps.vegetableLayout),
+    data: createData(this.props.screenProps.vegetableLayout)
+    ,
     selectedVeg: "",
     gardenWidth: this.props.screenProps.width,
     gardenHeight: this.props.screenProps.height
@@ -46,13 +39,12 @@ class MyGarden extends Component {
             style={{
               fontWeight: "bold",
               color: "white",
-              fontSize: 32,
-              height: "100%"
+              fontSize: 30,
+              height: "100%",
+              textAlign: 'center'
             }}
           >
             {item.label}
-            {` `}
-            {this.state.seedLookUp[item.label]}
           </Text>
         </TouchableOpacity>
       </View>
