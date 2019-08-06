@@ -1,15 +1,38 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
+import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
+import moment from "moment";
 
 export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
-    garden: ["Carrot", "Potato"],
     plantDates: { Carrot: 1563231600, Potato: 1562153400 },
-    growTime: { Carrot: 70, Potato: 70 }
+    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
+    isDateTimePickerVisible: false
   };
+
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+  handleDatePicked = date => {
+    console.log("A date has been picked: ", date);
+    this.setState({
+      plantDates: {
+        ...this.state.plantDates,
+        [this.props.selectedVeg]: new Date(date).getTime() / 1000
+      }
+    });
+    console.log(this.state.plantDates);
+    this.hideDateTimePicker();
+  };
+
   render() {
     const {
       selectedVeg,
@@ -23,9 +46,9 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 90,
+          height: 100,
           backgroundColor: "beige",
-          margin: 15
+          margin: 10
         }}
       >
         <Text>
@@ -52,6 +75,21 @@ export default class VeggieInfo extends Component {
             width={200}
             color={"#FFA03A"}
           />
+        ) : null}
+        {selectedVeg ? (
+          <View>
+            <Button
+              title="Date Planted"
+              onPress={this.showDateTimePicker}
+              color="#FFA03A"
+            />
+            <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDateTimePicker}
+              color="red"
+            />
+          </View>
         ) : null}
       </View>
     );
