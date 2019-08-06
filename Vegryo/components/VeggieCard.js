@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   header: {
     borderColor: "black",
     borderWidth: 0.5,
-    padding: 20,
+    padding: 30,
     margin: 2,
     alignItems: "center", backgroundColor: 'whitesmoke'
   },
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
-    height: 35, alignItems: 'center'
+    height: 35, alignItems: 'center', position: "absolute", bottom: 0
   },
   buttonText: {
     fontFamily: 'B612Mono-Regular',
