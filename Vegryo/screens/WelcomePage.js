@@ -1,9 +1,16 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ScrollView,
+  ActivityIndicator
+} from "react-native";
 import Weather from "../components/Weather";
 import HomeVeggies from "../components/HomeVeggies";
-import VeggieBar from "../components/VeggieBar";
 import * as api from "../utils/api";
+import Login from "./Login";
 
 class WelcomePage extends React.Component {
   state = {
@@ -23,10 +30,10 @@ class WelcomePage extends React.Component {
           Welcome fellow Gardener!
         </Text>
         <Weather />
+        <Login navigation={this.props.navigation} />
         {this.state.veg.map(veggies => (
           <HomeVeggies key={veggies} veg={veggies} />
         ))}
-        <VeggieBar />
       </ScrollView>
     );
   }

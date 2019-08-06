@@ -1,45 +1,43 @@
 import React, { Component } from "react";
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
-import Login from "../screens/Login";
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator
+} from "react-navigation";
+
 import MyGarden from "../screens/MyGarden1";
 import Vegetables from "../screens/Vegetables";
 import CreateAccount from "../screens/CreateAccount";
 import WelcomePage from "../screens/WelcomePage";
 import Icon from "react-native-vector-icons/Ionicons";
 
-const HomeStack = createStackNavigator(
-  {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
-  })
+const HomeStack = createStackNavigator({
+  Home: { screen: WelcomePage },
+  MyGarden: { screen: MyGarden },
+  Vegetables: { screen: Vegetables },
+  CreateAccount: { screen: CreateAccount }
+});
 
-const MyGardenStack = createStackNavigator(
-  {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
-  })
+const MyGardenStack = createStackNavigator({
+  Home: { screen: WelcomePage },
+  MyGarden: { screen: MyGarden },
+  Vegetables: { screen: Vegetables },
+  CreateAccount: { screen: CreateAccount }
+});
 
-const VegetablesStack = createStackNavigator(
-  {
+const VegetablesStack = createStackNavigator({
+  Home: { screen: WelcomePage },
+  MyGarden: { screen: MyGarden },
+  Vegetables: { screen: Vegetables },
+  CreateAccount: { screen: CreateAccount }
+});
 
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
-  })
-
-const CreateAccStack = createStackNavigator(
-  {
-
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
-  })
+const CreateAccStack = createStackNavigator({
+  Home: { screen: WelcomePage },
+  MyGarden: { screen: MyGarden },
+  Vegetables: { screen: Vegetables },
+  CreateAccount: { screen: CreateAccount }
+});
 
 const BottomNav = createBottomTabNavigator(
   (paths = {
