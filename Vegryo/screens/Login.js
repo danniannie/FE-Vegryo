@@ -67,6 +67,12 @@ class Login extends React.Component {
               style={styles.login}
               onPress={this.handleClick}
             />
+
+            <Button
+              title="Sign Out"
+              type="solid"
+              onPress={this.handleSignOut}
+            />
           </View>
         </ScrollView>
       );
@@ -76,41 +82,68 @@ class Login extends React.Component {
   render() {
     return <ScrollView>{this.loadingPage()}</ScrollView>;
   }
+
+  Login = (email, password) => {
+    try {
+      firebase.auth().signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      let errorCode = error.code;
+      let errorMessage = error.message;
+    }
+  };
+  handleClick = () => {
+    const { navigation } = this.props;
+    this.Login(this.state.email, this.state.password);
+    navigation.navigate("MyGarden"); //give error if invalid password/email // link users backend to frontend -security
+  };
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log("auth");
+    });
+  }
+
   signUp = (email, password) => {
     try {
       firebase.auth().createUserWithEmailAndPassword(email, password);
     } catch (error) {
-      console.log(error);
+      let errorCode = error.code;
+      let errorMessage = error.message;
     }
   };
   onPress = () => {
     const { navigation } = this.props;
     this.setState({
-      isLoading: true,
+      isLoading: false,
       email: "",
       password: ""
     });
-    // if (user in databse) {
-    //   this.setState({ error: "The email already exists" });
-    // } else {
     this.signUp(this.state.email, this.state.password);
     alert("Successfully signed up!");
-    // }
+    //navigates then errors, erro to show if user already exists
     navigation.navigate("CreateAccount");
   };
 
-  handleClick = () => {
+  signOut = (email, password) => {
+    try {
+      firebase.auth().signOut(email, password);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+  handleSignOut = () => {
     const { navigation } = this.props;
-    navigation.navigate("LoginPage"); //complete
+    this.signOut(this.state.email, this.state.password);
+    alert("signed out");
+    navigation.navigate("");
   };
 }
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 18,
+    fontSize: 22,
     lineHeight: 30,
     textAlign: "center",
-    margin: 15
+    marginTop: 20
   },
 
   signup: {

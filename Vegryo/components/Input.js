@@ -27,9 +27,9 @@ const Input = ({
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     width: "100%",
-    marginTop: 10
+    marginBottom: 40,
+    alignItems: "center"
   },
   label: {
     padding: 5,

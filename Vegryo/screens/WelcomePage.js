@@ -16,6 +16,7 @@ class WelcomePage extends React.Component {
   state = {
     veg: []
   };
+
   render() {
     return (
       <ScrollView>
