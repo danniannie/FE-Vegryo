@@ -3,13 +3,21 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
-import moment from "moment";
+import * as api from "../utils/api";
 
 export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
-    plantDates: { Carrot: 1563231600, Potato: 1562153400 },
-    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
+    plantDates: {},
+    growTime: {
+      Carrot: 70,
+      Potato: 70,
+      Asparagus: 60,
+      Broccoli: 125,
+      Cabbage: 70,
+      Sprouts: 90,
+      SweetCorn: 80
+    },
     isDateTimePickerVisible: false
   };
 
@@ -22,14 +30,16 @@ export default class VeggieInfo extends Component {
   };
 
   handleDatePicked = date => {
-    console.log("A date has been picked: ", date);
     this.setState({
       plantDates: {
         ...this.state.plantDates,
         [this.props.selectedVeg]: new Date(date).getTime() / 1000
       }
     });
-    console.log(this.state.plantDates);
+    api.patchToUser({
+      text: { Garden: this.state.plantDates }
+    });
+    //.then(data => console.log(data));
     this.hideDateTimePicker();
   };
 
@@ -52,6 +62,7 @@ export default class VeggieInfo extends Component {
         }}
       >
         <Text>
+          {/* {conditionally render if ready to harvest} */}
           {selectedVeg}
           {selectedVeg ? ": " : null}
           {seedLookUp[selectedVeg]}
@@ -93,5 +104,16 @@ export default class VeggieInfo extends Component {
         ) : null}
       </View>
     );
+  }
+  componentDidMount() {
+    api
+      .getUserByID()
+      .then(res => this.setState({ plantDates: res.data.Garden }));
+  }
+
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState !== this.state.plantDates) {
+      console.log(this.state.plantDates);
+    }
   }
 }
