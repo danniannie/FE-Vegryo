@@ -10,7 +10,8 @@ import {
 import Weather from "../components/Weather";
 import HomeVeggies from "../components/HomeVeggies";
 import * as api from "../utils/api";
-import Login from "./Login";
+// import Login from "./Login";
+// import * as firebase from "firebase";
 
 class WelcomePage extends React.Component {
   state = {
@@ -31,7 +32,7 @@ class WelcomePage extends React.Component {
           Welcome fellow Gardener!
         </Text>
         <Weather />
-        <Login navigation={this.props.navigation} />
+        {/* <Login navigation={this.props.navigation} /> */}
         {this.state.veg.map(veggies => (
           <HomeVeggies key={veggies} veg={veggies} />
         ))}
