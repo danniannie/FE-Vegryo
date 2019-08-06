@@ -65,7 +65,7 @@ export default class VeggieInfo extends Component {
           borderColor: "black", alignItems: "center"
         }}
       >
-        <Text style={{ textAlign: "center", padding: 1 }}>
+        <Text style={{ textAlign: "center", padding: 1, fontFamily: 'B612Mono-Regular' }}>
           {/* {conditionally render if ready to harvest} */}
 
           {selectedVeg
@@ -81,6 +81,7 @@ export default class VeggieInfo extends Component {
             ? `Days until harvest: ${growTime[selectedVeg] -
             Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
             : null}
+
         </Text>
 
         {selectedVeg ? (
@@ -99,7 +100,7 @@ export default class VeggieInfo extends Component {
               title="Date Planted"
               onPress={this.showDateTimePicker}
               style={{ borderWidth: 1, borderColor: "black", width: 100, height: 30, margin: 5, backgroundColor: '#5576B5' }}
-            ><Text style={{ textAlign: 'center', padding: 5, color: 'white' }}>Date Planted</Text></TouchableOpacity>
+            ><Text style={{ textAlign: 'center', padding: 5, color: 'white', fontFamily: 'B612Mono-Regular' }}>Date Planted</Text></TouchableOpacity>
             <DateTimePicker
               isVisible={this.state.isDateTimePickerVisible}
               onConfirm={this.handleDatePicked}

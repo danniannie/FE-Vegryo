@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from "react-native";
 import {
   Collapse,
   CollapseHeader,
@@ -15,37 +15,37 @@ export default class VeggieCard extends React.Component {
     const { vegetable } = this.props;
 
     const Picture =
-      vegetable.data.Picture ||
-      "https://www.simplyrecipes.com/wp-content/uploads/2015/04/roasted-asparagus-horiz-a-1600.jpg";
+      vegetable.data.Picture;
     return (
       <Collapse>
         <CollapseHeader style={styles.header}>
-          <Text>{vegetable.id} </Text>
+          <Text style={{ fontFamily: 'B612Mono-Regular' }}>{vegetable.id} </Text>
         </CollapseHeader>
         <CollapseBody style={styles.body}>
-          <Button
-            title="Add"
-            style={styles.button}
-            onPress={() => {
-              this.select("add");
-            }}
-            disabled={this.state.disabled}
-          />
-          <Button
-            title="Remove"
-            style={styles.button}
-            onPress={() => {
-              this.select("remove");
-            }}
-            disabled={this.state.disabledRemove}
-          />
-          <Image
-            style={{ width: 130, height: 140 }}
-            source={{
-              uri: Picture
-            }}
-          />
-          <Text>
+          <View style={{ flexDirection: 'row', flex: 1, "justify-content": 'space-around' }}>
+            <Image
+              style={{ width: 150, height: 140 }}
+              source={{
+                uri: Picture
+              }} resizeMode="center"
+            />
+            <View>
+              <TouchableOpacity style={styles.button}
+                onPress={() => {
+                  this.select("add");
+                }}
+                disabled={this.state.disabled}><Text>Add</Text></TouchableOpacity>
+
+
+              <TouchableOpacity style={styles.button}
+                onPress={() => {
+                  this.select("remove");
+                }}
+                disabled={this.state.disabledRemove}><Text>Remove</Text></TouchableOpacity>
+            </View>
+          </View>
+
+          <Text style={{ fontFamily: 'B612Mono-Regular' }}>
             {vegetable.id}
             {"\n"}
             {"\n"}
