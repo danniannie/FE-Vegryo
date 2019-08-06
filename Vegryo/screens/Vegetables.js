@@ -17,19 +17,20 @@ export default class Vegetables extends React.Component {
 
     return (
       <ScrollView>
+
         {isLoading ? (
           <AnimatedCarrot />
         ) : (
-          vegetables.map(vegetable => (
-            <VeggieCard
-              vegetable={vegetable}
-              key={vegetable.id}
-              handleAdd={this.props.screenProps.handleAdd}
-              handleRemove={this.props.screenProps.handleRemove}
-              veggieHere={selectedVeggies.hasOwnProperty(vegetable.id)}
-            />
-          ))
-        )}
+            vegetables.map(vegetable => (
+              <VeggieCard
+                vegetable={vegetable}
+                key={vegetable.id}
+                handleAdd={this.props.screenProps.handleAdd}
+                handleRemove={this.props.screenProps.handleRemove}
+                veggieHere={selectedVeggies.hasOwnProperty(vegetable.id)}
+              />
+            ))
+          )}
         <Button title="Build your Garden" onPress={this.onPress} />
       </ScrollView>
     );

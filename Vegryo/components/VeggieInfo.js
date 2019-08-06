@@ -43,6 +43,7 @@ export default class VeggieInfo extends Component {
     this.hideDateTimePicker();
   };
 
+
   render() {
     const {
       selectedVeg,
@@ -56,16 +57,18 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 100,
-          backgroundColor: "beige",
-          margin: 10
+          height: 120,
+          margin: 5,
+          padding: 2,
+          borderWidth: 1,
+          borderColor: "black", alignItems: "center"
         }}
       >
-        <Text>
+        <Text style={{ textAlign: "center", padding: 1 }}>
           {/* {conditionally render if ready to harvest} */}
-          {selectedVeg}
-          {selectedVeg ? ": " : null}
-          {seedLookUp[selectedVeg]}
+
+          {selectedVeg
+            ? `You're able to plant ${seedLookUp[selectedVeg]} crops` : null}
           {"\n"}
           {selectedVeg
             ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
@@ -75,9 +78,10 @@ export default class VeggieInfo extends Component {
           {"\n"}
           {selectedVeg
             ? `Days until harvest: ${growTime[selectedVeg] -
-                Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
+            Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
             : null}
         </Text>
+
         {selectedVeg ? (
           <ProgressBar
             progress={
@@ -92,22 +96,28 @@ export default class VeggieInfo extends Component {
             <Button
               title="Date Planted"
               onPress={this.showDateTimePicker}
-              color="#FFA03A"
+              style={{ borderWidth: 2, borderColor: "black" }}
             />
             <DateTimePicker
               isVisible={this.state.isDateTimePickerVisible}
               onConfirm={this.handleDatePicked}
               onCancel={this.hideDateTimePicker}
-              color="red"
+              color="#FFA03A"
+
             />
           </View>
         ) : null}
       </View>
     );
+
+
+
   }
+
+
   componentDidMount() {
     api
-      .getUserByID()
+      .getUserbyID()
       .then(res => this.setState({ plantDates: res.data.Garden }));
   }
 
@@ -116,4 +126,6 @@ export default class VeggieInfo extends Component {
       console.log(this.state.plantDates);
     }
   }
+
+
 }

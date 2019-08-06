@@ -80,13 +80,15 @@ class MyGarden extends Component {
             onMoveEnd={({ data }) => this.setState({ data })}
           />
         </View>
-        <VeggieInfo
-          selectedVeg={this.state.selectedVeg}
-          seedLookUp={this.state.seedLookUp}
-          ammountOfVeg={this.state.data.length}
-          gardenWidth={this.state.gardenWidth}
-          gardenHeight={this.state.gardenHeight}
-        />
+        <View style={{ alignItems: 'center' }}>
+          <VeggieInfo
+            selectedVeg={this.state.selectedVeg}
+            seedLookUp={this.state.seedLookUp}
+            ammountOfVeg={this.state.data.length}
+            gardenWidth={this.state.gardenWidth}
+            gardenHeight={this.state.gardenHeight}
+          />
+        </View>
       </View>
     );
   }
