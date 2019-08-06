@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
 import { createData, createSeedLookup } from "../utils/utils"
+import * as api from "../utils/api"
 
 
 
@@ -13,8 +14,10 @@ class MyGarden extends Component {
     ,
     selectedVeg: "",
     gardenWidth: this.props.screenProps.width,
-    gardenHeight: this.props.screenProps.height
+    gardenHeight: this.props.screenProps.height,
+    vegetables: {}
   };
+
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
     return (
@@ -24,10 +27,10 @@ class MyGarden extends Component {
             alignItems: "center",
             justifyContent: "center",
             backgroundColor: isActive ? "rgba(104,120,43,0.6)" : null,
-            margin: isActive ? 5 : 1,
+            margin: isActive ? 5 : null,
             borderRadius: 2,
-            borderWidth: isActive ? null : 1,
-            borderColor: isActive ? null : "#CD853F"
+            borderWidth: isActive ? null : 2,
+            borderColor: isActive ? null : "#5576B5"
           }}
           onPress={() => {
             this.setState({ selectedVeg: item.label });
@@ -37,14 +40,15 @@ class MyGarden extends Component {
         >
           <Text
             style={{
-              fontWeight: "bold",
               color: "white",
               fontSize: 30,
               height: "100%",
-              textAlign: 'center'
+              textAlign: 'center',
+
             }}
           >
             {item.label}
+
           </Text>
         </TouchableOpacity>
       </View>
@@ -52,21 +56,20 @@ class MyGarden extends Component {
   };
 
   render() {
+
     const Soil =
-      "https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/e7c4af71-cdf1-4627-bfc2-5e9e4500ee10_scaled.jpg";
+      "http://m.espacepourlavie.ca/sites/espacepourlavie.ca/files/styles/nocrop-gr8/public/istock_000015226257_620px_0.jpg?itok=SCNt6MGy";
     return (
       <View>
         <View style={{ height: 400, margin: 10 }}>
-          <Image
+          <View
             style={{
               borderRadius: 2,
               width: "100%",
               height: 400,
               position: "absolute",
-              zIndex: 0
-            }}
-            source={{
-              uri: Soil
+              zIndex: 0,
+              backgroundColor: "#654321"
             }}
           />
           <DraggableFlatList
@@ -88,7 +91,12 @@ class MyGarden extends Component {
     );
   }
 
-
+  componentDidMount() {
+    api
+      .getAllVeggies()
+      .then(vegetables => this.setState({ vegetables })
+      );
+  }
 
 }
 
