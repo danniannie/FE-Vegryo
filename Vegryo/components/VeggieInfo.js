@@ -3,13 +3,20 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
-import moment from "moment";
 
 export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
     plantDates: { Carrot: 1563231600, Potato: 1562153400 },
-    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
+    growTime: {
+      Carrot: 70,
+      Potato: 70,
+      Asparagus: 60,
+      Broccoli: 125,
+      Cabbage: 70,
+      Sprouts: 90,
+      SweetCorn: 80
+    },
     isDateTimePickerVisible: false
   };
 
@@ -22,14 +29,13 @@ export default class VeggieInfo extends Component {
   };
 
   handleDatePicked = date => {
-    console.log("A date has been picked: ", date);
     this.setState({
       plantDates: {
         ...this.state.plantDates,
         [this.props.selectedVeg]: new Date(date).getTime() / 1000
       }
     });
-    console.log(this.state.plantDates);
+    //post to database
     this.hideDateTimePicker();
   };
 
