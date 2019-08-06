@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
+import moment from "moment";
 
 export default class VeggieInfo extends Component {
   state = {
@@ -23,8 +24,12 @@ export default class VeggieInfo extends Component {
   handleDatePicked = date => {
     console.log("A date has been picked: ", date);
     this.setState({
-      plantDates: { ...this.state.plantDates, [this.props.selectedVeg]: date }
+      plantDates: {
+        ...this.state.plantDates,
+        [this.props.selectedVeg]: new Date(date).getTime() / 1000
+      }
     });
+    console.log(this.state.plantDates);
     this.hideDateTimePicker();
   };
 
