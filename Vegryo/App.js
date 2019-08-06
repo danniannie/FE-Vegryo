@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import BottomNavigator from "./Routes/BottomNavigator";
+import * as Font from 'expo-font'
 
 export default class App extends Component {
   state = {
     vegetableLayout: [],
     height: 100,
     width: 100,
-    selectedVeggies: {}
+    selectedVeggies: {},
+    fontLoaded: false
   };
 
   render() {
@@ -50,5 +52,12 @@ export default class App extends Component {
       this.setState({ ...selectedVeggies, selectedVeggies });
     }
   };
-}
 
+  componentDidMount = async () => {
+    await Font.loadAsync({
+      'JustAnotherHand-Regular': require('./assets/fonts/JustAnotherHand-Regular.ttf'),
+      'B612Mono-Regular': require('./assets/fonts/B612Mono-Regular.ttf')
+    })
+    this.setState({ fontLoaded: true })
+  }
+}

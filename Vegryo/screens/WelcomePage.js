@@ -21,6 +21,7 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <ScrollView>
+
         <Text
           style={{
             textAlign: "center",
@@ -31,6 +32,7 @@ class WelcomePage extends React.Component {
         >
           Welcome fellow Gardener!
         </Text>
+
         <Weather />
         {/* <Login navigation={this.props.navigation} /> */}
         {this.state.veg.map(veggies => (
