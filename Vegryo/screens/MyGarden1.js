@@ -5,6 +5,7 @@ import VeggieInfo from "../components/VeggieInfo";
 import { createData, createSeedLookup } from "../utils/utils"
 import * as api from "../utils/api"
 import { Overlay } from "react-native-elements"
+import Carrot from '../assets/Carrot.png'
 
 
 
@@ -54,9 +55,12 @@ class MyGarden extends Component {
         <View>
           <Overlay isVisible={this.state.isVisible} onBackdropPress={() => { this.setState({ isVisible: false }) }} style={{ overlayBackgroundColor: 'grey' }}>
             <View>
-              <Text style={{ fontSize: 35, fontFamily: 'B612Mono-Regular' }}>Drag and drop to rearrange your garden, or click on each vegetable to see more information.</Text>
-              <TouchableOpacity onPress={() => { this.setState({ isVisible: false }) }}><Text style={{ fontSize: 30, fontFamily: 'B612Mono-Regular', color: "#ffa03a", paddingTop: 5 }}>Got it!</Text></TouchableOpacity>
-            </View>
+              <View style={{ alignItems: 'center', margin: 10 }}><Image source={Carrot} style={{ height: 150, width: 150 }} resizeMode='center'></Image></View>
+
+              <View>
+                <Text style={styles.overlayText}>Drag and drop to rearrange your garden, or click on each vegetable to see more information.</Text>
+                <TouchableOpacity onPress={() => { this.setState({ isVisible: false }) }}><Text style={styles.overlayButton}>Got it!</Text></TouchableOpacity>
+              </View></View>
           </Overlay></View>
         <View style={{ height: 400, margin: 10 }}>
           <View
@@ -117,6 +121,12 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     borderWidth: 2,
     borderColor: "#5576B5"
+  },
+  overlayButton: {
+    fontSize: 30, fontFamily: 'B612Mono-Regular', color: "#ffa03a", padding: 5, textAlign: "center"
+  },
+  overlayText: {
+    fontSize: 25, fontFamily: 'B612Mono-Regular', textAlign: 'center'
   }
 })
 

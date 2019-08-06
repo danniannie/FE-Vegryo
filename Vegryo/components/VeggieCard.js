@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     padding: 20,
     margin: 2,
-    alignItems: "center"
+    alignItems: "center", backgroundColor: 'whitesmoke'
   },
   body: {
     margin: 10,
@@ -116,11 +116,11 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
-    height: 30, alignItems: 'center'
+    height: 35, alignItems: 'center'
   },
   buttonText: {
     fontFamily: 'B612Mono-Regular',
-    fontSize: 15, textAlign: 'center', padding: 3
+    fontSize: 20, textAlign: 'center', padding: 3
   },
   text: {
     fontFamily: 'B612Mono-Regular'

@@ -56,7 +56,8 @@ export default class App extends Component {
   componentDidMount = async () => {
     await Font.loadAsync({
       'JustAnotherHand-Regular': require('./assets/fonts/JustAnotherHand-Regular.ttf'),
-      'B612Mono-Regular': require('./assets/fonts/B612Mono-Regular.ttf')
+      'B612Mono-Regular': require('./assets/fonts/B612Mono-Regular.ttf'),
+      'Chewy-Regular': require('./assets/fonts/Chewy-Regular.ttf')
     })
     this.setState({ fontLoaded: true })
   }
