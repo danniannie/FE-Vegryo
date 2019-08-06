@@ -4,6 +4,7 @@ import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
 import * as api from "../utils/api";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class VeggieInfo extends Component {
   state = {
@@ -57,8 +58,8 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 120,
-          margin: 5,
+          height: 125,
+          margin: 3,
           padding: 2,
           borderWidth: 1,
           borderColor: "black", alignItems: "center"
@@ -93,11 +94,12 @@ export default class VeggieInfo extends Component {
         ) : null}
         {selectedVeg ? (
           <View>
-            <Button
+
+            <TouchableOpacity
               title="Date Planted"
               onPress={this.showDateTimePicker}
-              style={{ borderWidth: 2, borderColor: "black" }}
-            />
+              style={{ borderWidth: 1, borderColor: "black", width: 100, height: 30, margin: 5, backgroundColor: '#5576B5' }}
+            ><Text style={{ textAlign: 'center', padding: 5, color: 'white' }}>Date Planted</Text></TouchableOpacity>
             <DateTimePicker
               isVisible={this.state.isDateTimePickerVisible}
               onConfirm={this.handleDatePicked}
