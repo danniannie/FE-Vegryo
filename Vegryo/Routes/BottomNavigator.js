@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
-import Login from "../screens/Login";
+import {
+createBottomTabNavigator,
+createAppContainer,
+createStackNavigator
+} from "react-navigation";
 import MyGarden from "../screens/MyGarden1";
 import Vegetables from "../screens/Vegetables";
 import CreateAccount from "../screens/CreateAccount";
@@ -13,7 +16,16 @@ const HomeStack = createStackNavigator(
     MyGarden: { screen: MyGarden },
     Vegetables: { screen: Vegetables },
     CreateAccount: { screen: CreateAccount }
-  })
+  },
+{
+defaultNavigationOptions: {
+headerStyle: {
+backgroundColor: '#cde8a4',
+},
+headerTintColor: '#484538',
+},
+}
+  );
 
 const MyGardenStack = createStackNavigator(
   {
@@ -21,7 +33,15 @@ const MyGardenStack = createStackNavigator(
     MyGarden: { screen: MyGarden },
     Vegetables: { screen: Vegetables },
     CreateAccount: { screen: CreateAccount }
-  })
+  },
+{
+defaultNavigationOptions: {
+headerStyle: {
+backgroundColor: '#cde8a4',
+},
+headerTintColor: '#484538',
+},
+});
 
 const VegetablesStack = createStackNavigator(
   {
@@ -30,7 +50,15 @@ const VegetablesStack = createStackNavigator(
     MyGarden: { screen: MyGarden },
     Vegetables: { screen: Vegetables },
     CreateAccount: { screen: CreateAccount }
-  })
+  },
+  {
+defaultNavigationOptions: {
+headerStyle: {
+backgroundColor: '#cde8a4',
+},
+headerTintColor: '#484538',
+},
+});
 
 const CreateAccStack = createStackNavigator(
   {
@@ -39,49 +67,59 @@ const CreateAccStack = createStackNavigator(
     MyGarden: { screen: MyGarden },
     Vegetables: { screen: Vegetables },
     CreateAccount: { screen: CreateAccount }
-  })
+  },
+  {
+defaultNavigationOptions: {
+headerStyle: {
+backgroundColor: '#cde8a4',
+},
+headerTintColor: '#484538'
+},
+});
 
 const BottomNav = createBottomTabNavigator(
-  (paths = {
+  {
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="ios-home" color="#484538" size={25} />
+        tabBarIcon: () => (
+          <Icon name="ios-home" size={25} />
         )
       }
     },
     Vegetables: {
       screen: VegetablesStack,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="md-leaf" color="#484538" size={25} />
+        tabBarIcon: () => (
+          <Icon name="ios-basket" size={25} />
         )
       }
     },
     MyGarden: {
       screen: MyGardenStack,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="ios-flower" color="#484538" size={25} />
+      navigationOptions:
+      
+       {
+        tabBarIcon: () => (
+          <Icon name="ios-flower" size={25} />
         )
       }
     },
     CreateAccount: {
       screen: CreateAccStack,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="ios-person" color="#484538" size={25} />
+      navigationOptions: () => ({
+        tabBarIcon: () => (
+          <Icon name="ios-person" size={25} />
         )
-      }
-    }
-  }),
-  {
-    tabBarOptions: {
-      activeTintColor: "#ffa03a",
-      inactiveTintColor: "#484538"
-    }
-  }
-);
+    })
+    },
+  },
+ { tabBarOptions: {
+  style: {
+  activeColor: '#e91e63',
+    backgroundColor: 'white',
+  },
+}}
+    );
 
 export default createAppContainer(BottomNav);

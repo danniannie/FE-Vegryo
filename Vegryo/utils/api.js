@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const getAllVeggies = async () => {
   const { data } = await axios.get(
     "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/crops"
@@ -17,6 +18,7 @@ export const postNewUser = async body => {
   return data;
 };
 
+
 export const patchToUser = async body => {
   const { data } = await axios.patch(
     "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/Old McDonald",
@@ -25,9 +27,17 @@ export const patchToUser = async body => {
   return data;
 };
 
-export const getUserByID = async () => {
+
+export const getWeather = async () => {
   const { data } = await axios.get(
-    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/Old McDonald"
+    "http://api.openweathermap.org/data/2.5/weather?q=Leeds,uk&APPID=dd243f07a1e18750d6c508a09806ddf4"
   );
   return data;
+};
+
+export const getUserbyID = async () => {
+  const { data } = await axios.get(
+    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/users/Old%20McDonald"
+  );
+ return data;
 };
