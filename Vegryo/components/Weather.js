@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
 import * as api from "../utils/api";
-import sunPic from "../assets/sun.jpg";
+import KelvinToCelcius from "kelvin-to-celsius";
+
 class Weather extends React.Component {
   state = {
     temperature: "",
@@ -21,24 +22,33 @@ class Weather extends React.Component {
       country,
       humidity,
       description,
-      sunPic
+      sunPic,
+      cloudPic,
+      rainPic,
+      thunderPic
     } = this.state;
     return (
       <View style={styles.weather}>
         <Text style={styles.text}>
-          {city}, {country}
+          {KelvinToCelcius(Number(temperature)).toFixed(1)}˚C{"\n"}
+          {"\n"}
+          {description.slice(0, 1).toUpperCase() + description.slice(1)}
           {"\n"}
           {"\n"}
-          {description.slice(0, 1).toUpperCase() + description.slice(1)} {"\n"}
-          {"\n"}
-          {temperature}
-          {"\n"}
-          {"\n"}
-          Humidity: {humidity}%
+          Humidity: {humidity}% {"\n"}
         </Text>
+        <Text
+          style={{
+            fontSize: 30,
+            margin: 15
+          }}
+        >
+          {city}, {country}
+        </Text>
+
         <Image
-          style={{ width: 200, height: 200, position: "absolute", right: 0 }}
-          source={sunPic}
+          style={{ width: 180, height: 180, position: "absolute", right: 0 }}
+          source={cloudPic}
         />
       </View>
     );

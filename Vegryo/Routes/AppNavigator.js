@@ -4,6 +4,7 @@ import MyGarden from "../screens/MyGarden1";
 import Vegetables from "../screens/Vegetables";
 import CreateAccount from "../screens/CreateAccount";
 import WelcomePage from "../screens/WelcomePage";
+import SignUp from "../screens/SignUp";
 
 const AppNavigator = createStackNavigator(
   {
@@ -11,7 +12,8 @@ const AppNavigator = createStackNavigator(
     WelcomePage,
     Vegetables,
     MyGarden,
-    CreateAccount
+    CreateAccount,
+    SignUp
   },
   {
     defaultNavigationOptions: {
