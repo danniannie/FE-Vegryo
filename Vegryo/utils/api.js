@@ -18,16 +18,6 @@ export const postNewUser = async body => {
   return data;
 };
 
-
-export const patchToUser = async body => {
-  const { data } = await axios.patch(
-    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/Old McDonald",
-    body
-  );
-  return data;
-};
-
-
 export const getWeather = async () => {
   const { data } = await axios.get(
     "http://api.openweathermap.org/data/2.5/weather?q=Leeds,uk&APPID=dd243f07a1e18750d6c508a09806ddf4"

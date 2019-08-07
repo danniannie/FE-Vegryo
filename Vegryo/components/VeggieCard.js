@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import {
   Collapse,
   CollapseHeader,
@@ -13,37 +20,51 @@ export default class VeggieCard extends React.Component {
   };
   render() {
     const { vegetable } = this.props;
-
-    const Picture =
-      vegetable.data.Picture;
+    const Picture = vegetable.data.Picture;
     return (
       <Collapse>
         <CollapseHeader style={styles.header}>
-          <Text style={{ fontFamily: 'B612Mono-Regular' }}>{vegetable.id} </Text>
+          <Text style={{ fontFamily: "B612Mono-Regular" }}>
+            {vegetable.id}{" "}
+          </Text>
         </CollapseHeader>
         <CollapseBody style={styles.body}>
-          <View style={{ flexDirection: 'row', flex: 1, alignItems: 'center' }}>
-            <TouchableOpacity style={styles.button}
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              flex: 1,
+              alignItems: "center"
+            }}
+          >
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 this.select("add");
               }}
-              disabled={this.state.disabled}><Text style={styles.buttonText}>Add</Text></TouchableOpacity>
+              disabled={this.state.disabled}
+            >
+              <Text style={styles.buttonText}>Add</Text>
+            </TouchableOpacity>
 
             <Image
-              style={{ width: 150, height: 140 }}
+              style={{ width: 150, height: 140, flex: 1 }}
               source={{
                 uri: Picture
-              }} resizeMode="center"
+              }}
+              resizeMode="center"
             />
 
-            <TouchableOpacity style={styles.button}
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 this.select("remove");
               }}
-              disabled={this.state.disabledRemove}><Text style={styles.buttonText}>Remove</Text></TouchableOpacity>
-
+              disabled={this.state.disabledRemove}
+            >
+              <Text style={styles.buttonText}>Remove</Text>
+            </TouchableOpacity>
           </View>
-
           <Text style={styles.text}>
             {vegetable.id}
             {"\n"}
@@ -104,9 +125,10 @@ const styles = StyleSheet.create({
   header: {
     borderColor: "black",
     borderWidth: 0.5,
-    padding: 20,
+    padding: 30,
     margin: 2,
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "whitesmoke"
   },
   body: {
     margin: 10,
@@ -116,13 +138,16 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
-    height: 30, alignItems: 'center'
+    height: 35,
+    alignItems: "center"
   },
   buttonText: {
-    fontFamily: 'B612Mono-Regular',
-    fontSize: 15, textAlign: 'center', padding: 3
+    fontFamily: "B612Mono-Regular",
+    fontSize: 20,
+    textAlign: "center",
+    padding: 3
   },
   text: {
-    fontFamily: 'B612Mono-Regular'
+    fontFamily: "B612Mono-Regular"
   }
 });

@@ -26,8 +26,9 @@ export default class Vegetables extends React.Component {
       <ScrollView>
         <Text
           style={{
-            fontFamily: "JustAnotherHand-Regular",
-            fontSize: 50,
+            fontFamily: "Chewy-Regular",
+            fontSize: 30,
+
             margin: 10,
             padding: 5
           }}

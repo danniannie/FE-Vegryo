@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import {
   createBottomTabNavigator,
   createAppContainer,
@@ -10,6 +11,7 @@ import Vegetables from "../screens/Vegetables";
 import CreateAccount from "../screens/CreateAccount";
 import WelcomePage from "../screens/WelcomePage";
 import Icon from "react-native-vector-icons/Ionicons";
+
 
 const HomeStack = createStackNavigator(
   {
@@ -79,8 +81,11 @@ const CreateAccStack = createStackNavigator(
   }
 );
 
+
+
+
 const BottomNav = createBottomTabNavigator(
-  {
+  (paths = {
     Home: {
       screen: HomeStack,
       navigationOptions: {
@@ -112,6 +117,7 @@ const BottomNav = createBottomTabNavigator(
         activeColor: "#e91e63",
         backgroundColor: "white"
       }
+
     }
   }
 );
