@@ -20,7 +20,6 @@ export default class VeggieCard extends React.Component {
   };
   render() {
     const { vegetable } = this.props;
-
     const Picture = vegetable.data.Picture;
     return (
       <Collapse>
@@ -30,7 +29,9 @@ export default class VeggieCard extends React.Component {
           </Text>
         </CollapseHeader>
         <CollapseBody style={styles.body}>
+
           <View style={{ flexDirection: "row", flex: 1, alignItems: "center" }}>
+
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -42,7 +43,7 @@ export default class VeggieCard extends React.Component {
             </TouchableOpacity>
 
             <Image
-              style={{ width: 150, height: 140 }}
+              style={{ width: 150, height: 140, flex: 1 }}
               source={{
                 uri: Picture
               }}
@@ -59,7 +60,6 @@ export default class VeggieCard extends React.Component {
               <Text style={styles.buttonText}>Remove</Text>
             </TouchableOpacity>
           </View>
-
           <Text style={styles.text}>
             {vegetable.id}
             {"\n"}
@@ -133,7 +133,9 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
+
     height: 35
+
   },
   buttonText: {
     fontFamily: "B612Mono-Regular",

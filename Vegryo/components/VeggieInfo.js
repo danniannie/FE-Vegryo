@@ -3,24 +3,18 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
+
 import * as api from "../utils/api";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
-    plantDates: {},
-    growTime: {
-      Carrot: 70,
-      Potato: 70,
-      Asparagus: 60,
-      Broccoli: 125,
-      Cabbage: 70,
-      Sprouts: 90,
-      SweetCorn: 80
-    },
+    plantDates: { Carrot: 1563231600, Potato: 1562153400 },
+    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
     isDateTimePickerVisible: false
   };
+
 
   render() {
     const {

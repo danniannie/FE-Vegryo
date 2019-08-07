@@ -3,25 +3,23 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ScrollView,
   ActivityIndicator
 } from "react-native";
 import Weather from "../components/Weather";
 import HomeVeggies from "../components/HomeVeggies";
 import * as api from "../utils/api";
-// import Login from "./Login";
-// import * as firebase from "firebase";
 
 class WelcomePage extends React.Component {
   state = {
-    veg: []
+    veg: [],
+    dateplanted: {}
   };
 
   render() {
+    // console.log(this.state.dateplanted);
     return (
       <ScrollView>
-
         <Text
           style={{
             textAlign: "center",
@@ -34,9 +32,12 @@ class WelcomePage extends React.Component {
         </Text>
 
         <Weather />
-        {/* <Login navigation={this.props.navigation} /> */}
         {this.state.veg.map(veggies => (
-          <HomeVeggies key={veggies} veg={veggies} />
+          <HomeVeggies
+            key={veggies}
+            veg={veggies}
+            date={this.state.dateplanted[veggies]}
+          />
         ))}
       </ScrollView>
     );
@@ -46,7 +47,10 @@ class WelcomePage extends React.Component {
   };
   fetchUser = async () => {
     const data = await api.getUserbyID();
-    this.setState({ veg: Object.keys(data.data.Garden) });
+    this.setState({
+      veg: Object.keys(data.data.Garden),
+      dateplanted: data.data.Garden
+    });
   };
 }
 

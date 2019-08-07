@@ -29,13 +29,13 @@ class Weather extends React.Component {
     } = this.state;
     return (
       <View style={styles.weather}>
+        <Text style={{ fontSize: 22, margin: 15 }}>
+          {KelvinToCelcius(Number(temperature)).toFixed(1)}˚C
+        </Text>
         <Text style={styles.text}>
-          {KelvinToCelcius(Number(temperature)).toFixed(1)}˚C{"\n"}
-          {"\n"}
           {description.slice(0, 1).toUpperCase() + description.slice(1)}
           {"\n"}
-          {"\n"}
-          Humidity: {humidity}% {"\n"}
+          Humidity: {humidity}%
         </Text>
         <Text
           style={{
