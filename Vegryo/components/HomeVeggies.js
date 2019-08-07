@@ -18,8 +18,8 @@ class HomeVeggies extends React.Component {
           resizeMode="contain"
         />
 
-        <Text>
-          Your {veg}'s will be ready to harvest{"\n"} in{" "}
+        <Text style={{ fontFamily: "B612Mono-Regular" }}>
+          Your {veg}'s will be ready {"\n"}to harvest in{" "}
           {Math.floor(daysGrown(date))} days.
         </Text>
       </View>

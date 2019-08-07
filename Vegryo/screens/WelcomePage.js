@@ -21,17 +21,6 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text
-          style={{
-            textAlign: "center",
-            padding: 35,
-            // fontFamily: "Chewy-Regular",
-            fontSize: 20,
-            backgroundColor: "whitesmoke"
-          }}
-        >
-          Welcome fellow Gardener!
-        </Text>
         {this.state.isLoading ? (
           <AnimatedCarrot />
         ) : (
@@ -49,18 +38,17 @@ class WelcomePage extends React.Component {
       </ScrollView>
     );
   }
-  componentDidMount = () => {
-    this.fetchUser().then(data => this.setState({ isLoading: false }));
-  };
-  fetchUser = async () => {
-    const { user } = this.props.screenProps;
-    const data = await api.getUserbyID(user);
-
-    this.setState({
-      veg: Object.keys(data.data.Garden),
-      dateplanted: data.data.Garden
-    });
-  };
 }
+componentDidMount = () => {
+  this.fetchUser().then(data => this.setState({ isLoading: false }));
+};
+fetchUser = async () => {
+  const { user } = this.props.screenProps;
+  const data = await api.getUserbyID(user);
+  this.setState({
+    veg: Object.keys(data.data.Garden),
+    dateplanted: data.data.Garden
+  });
+};
 
 export default WelcomePage;

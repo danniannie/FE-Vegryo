@@ -106,6 +106,7 @@ class MyGarden extends Component {
             ammountOfVeg={this.state.data.length}
             gardenWidth={this.state.gardenWidth}
             gardenHeight={this.state.gardenHeight}
+            user={this.props.screenProps.user}
           />
         </View>
       </View>
