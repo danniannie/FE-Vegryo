@@ -118,7 +118,12 @@ class MyGarden extends Component {
     const data = createData(this.props.screenProps.vegetableLayout);
     const gardenWidth = this.props.screenProps.width;
     const gardenHeight = this.props.screenProps.height;
-    this.setState({ seedLookUp, data, gardenHeight, gardenWidth });
+    const imageObj = this.setState({
+      seedLookUp,
+      data,
+      gardenHeight,
+      gardenWidth
+    });
   }
 }
 
