@@ -28,7 +28,6 @@ class CreateAccount extends Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.header}>Create Account:</Text>
           <View style={styles.form}>
             <Form
               ref="form"
@@ -94,7 +93,7 @@ stylesheet.textbox.error.marginBottom = 0;
 stylesheet.textboxView.normal.borderBottomWidth = 1;
 stylesheet.textboxView.normal.borderColor = "lightgrey";
 stylesheet.textboxView.normal.marginBottom = 5;
-stylesheet.controlLabel.normal.color = "brown";
+stylesheet.controlLabel.normal.color = "#ffa03a";
 stylesheet.textbox.normal.color = "pink";
 
 stylesheet.textboxView.error.borderWidth = 0;
@@ -107,14 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 10
   },
-  header: {
-    padding: 20,
-    width: "100%",
-    color: "white",
-    textAlign: "center",
-    fontSize: 20,
-    backgroundColor: "rgba(104,120,43,0.6)"
-  },
+
   form: {
     margin: 10
   },
@@ -125,11 +117,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 40,
-    backgroundColor: "rgba(104,120,43,0.6)",
+    backgroundColor: "#5576B5",
     borderColor: "white",
     borderWidth: 1,
     borderRadius: 3,
-
     alignSelf: "stretch",
     justifyContent: "center",
     width: "100%"
