@@ -15,7 +15,7 @@ class WelcomePage extends React.Component {
   state = {
     veg: [],
     dateplanted: {},
-    isLoading: true
+    isLoadingUser: true
   };
 
   render() {
@@ -32,7 +32,7 @@ class WelcomePage extends React.Component {
         >
           Welcome fellow Gardener!
         </Text>
-        {this.state.isLoading ? (
+        {this.state.isLoadingUser ? (
           <AnimatedCarrot />
         ) : (
           <View>
@@ -50,16 +50,16 @@ class WelcomePage extends React.Component {
     );
   }
   componentDidMount = () => {
-    this.fetchUser().then(data => this.setState({ isLoading: false }));
+    this.fetchUser().then(data => this.setState({ isLoadingUser: false }));
   };
   fetchUser = async () => {
     const { user } = this.props.screenProps;
     const data = await api.getUserbyID(user);
-
     this.setState({
       veg: Object.keys(data.data.Garden),
       dateplanted: data.data.Garden
     });
+    return data;
   };
 }
 
