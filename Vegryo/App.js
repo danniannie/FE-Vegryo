@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import BottomNavigator from "./Routes/BottomNavigator";
-import * as Font from 'expo-font'
+import * as Font from "expo-font";
 
 export default class App extends Component {
   state = {
     vegetableLayout: [],
-    height: 100,
-    width: 100,
+    height: 0,
+    width: 0,
     selectedVeggies: {},
-    fontLoaded: false
+    fontLoaded: false,
+    user: "Old McDonald"
   };
 
   render() {
@@ -22,7 +23,9 @@ export default class App extends Component {
           vegetableLayout: this.state.vegetableLayout,
           handleAdd: this.handleAdd,
           handleRemove: this.handleRemove,
-          selectedVeggies: this.state.selectedVeggies
+          selectedVeggies: this.state.selectedVeggies,
+          addUser: this.addUser,
+          user: this.state.user
         }}
       />
     );
@@ -43,6 +46,10 @@ export default class App extends Component {
     }
   };
 
+  addUser = user => {
+    this.setState({ user });
+  };
+
   handleRemove = id => {
     const { selectedVeggies } = this.state;
 
@@ -55,10 +62,10 @@ export default class App extends Component {
 
   componentDidMount = async () => {
     await Font.loadAsync({
-      'JustAnotherHand-Regular': require('./assets/fonts/JustAnotherHand-Regular.ttf'),
-      'B612Mono-Regular': require('./assets/fonts/B612Mono-Regular.ttf'),
-      'Chewy-Regular': require('./assets/fonts/Chewy-Regular.ttf')
-    })
-    this.setState({ fontLoaded: true })
-  }
+      "JustAnotherHand-Regular": require("./assets/fonts/JustAnotherHand-Regular.ttf"),
+      "B612Mono-Regular": require("./assets/fonts/B612Mono-Regular.ttf"),
+      "Chewy-Regular": require("./assets/fonts/Chewy-Regular.ttf")
+    });
+    this.setState({ fontLoaded: true });
+  };
 }

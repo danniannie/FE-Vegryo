@@ -29,14 +29,9 @@ export default class VeggieCard extends React.Component {
           </Text>
         </CollapseHeader>
         <CollapseBody style={styles.body}>
-          <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              flex: 1,
-              alignItems: "center"
-            }}
-          >
+
+          <View style={{ flexDirection: "row", flex: 1, alignItems: "center" }}>
+
             <TouchableOpacity
               style={styles.button}
               onPress={() => {
@@ -138,8 +133,9 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
-    height: 35,
-    alignItems: "center"
+
+    height: 35
+
   },
   buttonText: {
     fontFamily: "B612Mono-Regular",

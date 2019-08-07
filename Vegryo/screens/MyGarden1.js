@@ -2,24 +2,21 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
-import { createData, createSeedLookup } from "../utils/utils"
-import * as api from "../utils/api"
-import { Overlay } from "react-native-elements"
-import Carrot from '../assets/Carrot.png'
-
-
+import { createData, createSeedLookup } from "../utils/utils";
+import * as api from "../utils/api";
+import { Overlay } from "react-native-elements";
+import Carrot from "../assets/Carrot.png";
 
 class MyGarden extends Component {
   state = {
-    seedLookUp: createSeedLookup(this.props.screenProps.vegetableLayout),
-    data: createData(this.props.screenProps.vegetableLayout)
-    ,
+    seedLookUp: {},
+    data: [],
     selectedVeg: "",
-    gardenWidth: this.props.screenProps.width,
-    gardenHeight: this.props.screenProps.height,
-    vegetables: {}, isVisible: true
+    gardenWidth: 0,
+    gardenHeight: 0,
+    vegetables: {},
+    isVisible: true
   };
-
 
   renderItem = ({ item, index, move, moveEnd, isActive }) => {
     return (
@@ -37,12 +34,11 @@ class MyGarden extends Component {
               color: "white",
               fontSize: 30,
               height: "100%",
-              textAlign: 'center',
-              fontFamily: 'B612Mono-Regular'
+              textAlign: "center",
+              fontFamily: "B612Mono-Regular"
             }}
           >
             {item.label}
-
           </Text>
         </TouchableOpacity>
       </View>
@@ -53,15 +49,38 @@ class MyGarden extends Component {
     return (
       <View>
         <View>
-          <Overlay isVisible={this.state.isVisible} onBackdropPress={() => { this.setState({ isVisible: false }) }} style={{ overlayBackgroundColor: 'grey' }}>
+          <Overlay
+            isVisible={this.state.isVisible}
+            onBackdropPress={() => {
+              this.setState({ isVisible: false });
+            }}
+            style={{ overlayBackgroundColor: "grey" }}
+          >
             <View>
-              <View style={{ alignItems: 'center', margin: 10 }}><Image source={Carrot} style={{ height: 150, width: 150 }} resizeMode='center'></Image></View>
+              <View style={{ alignItems: "center", margin: 10 }}>
+                <Image
+                  source={Carrot}
+                  style={{ height: 150, width: 150 }}
+                  resizeMode="center"
+                />
+              </View>
 
               <View>
-                <Text style={styles.overlayText}>Drag and drop to rearrange your garden, or click on each vegetable to see more information.</Text>
-                <TouchableOpacity onPress={() => { this.setState({ isVisible: false }) }}><Text style={styles.overlayButton}>Got it!</Text></TouchableOpacity>
-              </View></View>
-          </Overlay></View>
+                <Text style={styles.overlayText}>
+                  Drag and drop to rearrange your garden, or click on each
+                  vegetable to see more information.
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.setState({ isVisible: false });
+                  }}
+                >
+                  <Text style={styles.overlayButton}>Got it!</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Overlay>
+        </View>
         <View style={{ height: 400, margin: 10 }}>
           <View
             style={{
@@ -81,7 +100,7 @@ class MyGarden extends Component {
             onMoveEnd={({ data }) => this.setState({ data })}
           />
         </View>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: "center" }}>
           <VeggieInfo
             selectedVeg={this.state.selectedVeg}
             seedLookUp={this.state.seedLookUp}
@@ -95,12 +114,17 @@ class MyGarden extends Component {
   }
 
   componentDidMount() {
-    api
-      .getAllVeggies()
-      .then(vegetables => this.setState({ vegetables })
-      );
+    const seedLookUp = createSeedLookup(this.props.screenProps.vegetableLayout);
+    const data = createData(this.props.screenProps.vegetableLayout);
+    const gardenWidth = this.props.screenProps.width;
+    const gardenHeight = this.props.screenProps.height;
+    const imageObj = this.setState({
+      seedLookUp,
+      data,
+      gardenHeight,
+      gardenWidth
+    });
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -123,11 +147,17 @@ const styles = StyleSheet.create({
     borderColor: "#5576B5"
   },
   overlayButton: {
-    fontSize: 30, fontFamily: 'B612Mono-Regular', color: "#ffa03a", padding: 5, textAlign: "center"
+    fontSize: 30,
+    fontFamily: "B612Mono-Regular",
+    color: "#ffa03a",
+    padding: 5,
+    textAlign: "center"
   },
   overlayText: {
-    fontSize: 25, fontFamily: 'B612Mono-Regular', textAlign: 'center'
+    fontSize: 25,
+    fontFamily: "B612Mono-Regular",
+    textAlign: "center"
   }
-})
+});
 
 export default MyGarden;

@@ -17,22 +17,21 @@ const daysGrown = days => {
 };
 
 const createData = vegetableLayout => {
-
-  return vegetableLayout.reduce((acc, veg) => {
-    let key = Object.keys(veg);
-    return [...acc, key];
-  }, [])
+  return vegetableLayout
+    .reduce((acc, veg) => {
+      let key = Object.keys(veg);
+      return [...acc, key];
+    }, [])
     .map((veg, index) => ({
       key: `item-${index}`,
       label: veg
-    }))
-}
+    }));
+};
 
 const createSeedLookup = vegetableLayout => {
   return vegetableLayout.reduce((acc, veg) => {
     return { ...acc, [Object.keys(veg)]: Object.values(veg) };
-  }, {})
-}
-
+  }, {});
+};
 
 module.exports = { gardenDesign, daysGrown, createData, createSeedLookup };
