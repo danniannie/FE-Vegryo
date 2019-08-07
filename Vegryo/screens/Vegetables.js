@@ -89,6 +89,7 @@ export default class Vegetables extends React.Component {
       screenProps.height,
       screenProps.width
     );
+
     screenProps.addVegetableLayout(vegetableLayout);
     navigation.navigate("MyGarden");
   };

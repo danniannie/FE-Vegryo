@@ -15,7 +15,6 @@ export default class VeggieInfo extends Component {
     isDateTimePickerVisible: false
   };
 
-
   render() {
     const {
       selectedVeg,
@@ -100,12 +99,6 @@ export default class VeggieInfo extends Component {
       .then(res => this.setState({ plantDates: res.data.Garden }));
   }
 
-  componentDidUpdate(prevState, prevProps) {
-    if (prevState !== this.state.plantDates) {
-      //console.log(this.state.plantDates);
-    }
-  }
-
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
   };
@@ -124,7 +117,6 @@ export default class VeggieInfo extends Component {
     api.patchToUser({
       text: { Garden: this.state.plantDates }
     });
-    //.then(data => console.log(data));
     this.hideDateTimePicker();
   };
 }

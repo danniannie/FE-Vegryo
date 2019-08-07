@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
-import { createData, createSeedLookup } from "../utils/utils";
+import { createData, createSeedLookup, addressLookup } from "../utils/utils";
 import * as api from "../utils/api";
 import { Overlay } from "react-native-elements";
 import Carrot from "../assets/Carrot.png";
@@ -11,10 +11,9 @@ class MyGarden extends Component {
   state = {
     seedLookUp: {},
     data: [],
-    selectedVeg: "",
+    selectedVeg: [],
     gardenWidth: 0,
     gardenHeight: 0,
-    vegetables: {},
     isVisible: true
   };
 
@@ -118,12 +117,29 @@ class MyGarden extends Component {
     const data = createData(this.props.screenProps.vegetableLayout);
     const gardenWidth = this.props.screenProps.width;
     const gardenHeight = this.props.screenProps.height;
-    const imageObj = this.setState({
+    this.setState({
       seedLookUp,
       data,
       gardenHeight,
       gardenWidth
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.screenProps.vegetableLayout !=
+      this.props.screenProps.vegetableLayout
+    ) {
+      const seedLookUp = createSeedLookup(
+        this.props.screenProps.vegetableLayout
+      );
+      const data = createData(this.props.screenProps.vegetableLayout);
+
+      this.setState({
+        seedLookUp,
+        data
+      });
+    }
   }
 }
 
