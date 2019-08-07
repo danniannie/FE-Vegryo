@@ -3,7 +3,12 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
+<<<<<<< HEAD
 import moment from "moment";
+=======
+import * as api from "../utils/api";
+import { TouchableOpacity } from "react-native-gesture-handler";
+>>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
 
 export default class VeggieInfo extends Component {
   state = {
@@ -46,15 +51,31 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 100,
-          backgroundColor: "beige",
-          margin: 10
+          height: 125,
+          margin: 3,
+          padding: 2,
+          borderWidth: 1,
+          borderColor: "black",
+          alignItems: "center"
         }}
       >
+<<<<<<< HEAD
         <Text>
           {selectedVeg}
           {selectedVeg ? ": " : null}
           {seedLookUp[selectedVeg]}
+=======
+        <Text
+          style={{
+            textAlign: "center",
+            padding: 1,
+            fontFamily: "B612Mono-Regular"
+          }}
+        >
+          {selectedVeg
+            ? `You're able to plant ${seedLookUp[selectedVeg]} crops`
+            : null}
+>>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
           {"\n"}
           {selectedVeg
             ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
@@ -67,6 +88,7 @@ export default class VeggieInfo extends Component {
                 Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
             : null}
         </Text>
+
         {selectedVeg ? (
           <ProgressBar
             progress={
@@ -76,22 +98,59 @@ export default class VeggieInfo extends Component {
             color={"#FFA03A"}
           />
         ) : null}
+
         {selectedVeg ? (
           <View>
-            <Button
-              title="Date Planted"
-              onPress={this.showDateTimePicker}
-              color="#FFA03A"
-            />
+            {growTime[selectedVeg] - daysGrown(plantDates[selectedVeg]) <= 0 ? (
+              <Text>{`Time to Harvest your ${selectedVeg}!!!`}</Text>
+            ) : (
+              <TouchableOpacity
+                onPress={this.showDateTimePicker}
+                style={styles.button}
+              >
+                <Text style={styles.buttonText}>Date Planted</Text>
+              </TouchableOpacity>
+            )}
             <DateTimePicker
               isVisible={this.state.isDateTimePickerVisible}
               onConfirm={this.handleDatePicked}
               onCancel={this.hideDateTimePicker}
-              color="red"
+              color="#FFA03A"
             />
           </View>
         ) : null}
       </View>
     );
   }
+<<<<<<< HEAD
+=======
+
+  componentDidMount() {
+    api
+      .getUserbyID()
+      .then(res => this.setState({ plantDates: res.data.Garden }));
+  }
+
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState !== this.state.plantDates) {
+      //console.log(this.state.plantDates);
+    }
+  }
+>>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
 }
+const styles = StyleSheet.create({
+  button: {
+    borderWidth: 1,
+    borderColor: "black",
+    width: 120,
+    height: 30,
+    margin: 5,
+    backgroundColor: "#5576B5"
+  },
+  buttonText: {
+    textAlign: "center",
+    padding: 5,
+    color: "white",
+    fontFamily: "B612Mono-Regular"
+  }
+});

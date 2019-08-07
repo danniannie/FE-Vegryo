@@ -6,7 +6,7 @@ class HomeVeggies extends React.Component {
     const { veg } = this.props;
     return (
       <View style={styles.veg}>
-        <Text style={styles.vegHeader}>
+        <Text style={{ fontSize: 18 }}>
           {veg}: {"\n"}
         </Text>
         <Text>Your {veg}'s will be ready to harvest in X days.</Text>
@@ -16,12 +16,10 @@ class HomeVeggies extends React.Component {
 }
 const styles = StyleSheet.create({
   veg: {
-    backgroundColor: "pink",
+    backgroundColor: "whitesmoke",
     margin: 10,
-    padding: 40
-  },
-  vegHeader: {
-    fontSize: 18
+    padding: 40,
+    borderRadius: 3
   }
 });
 

@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import Login from "../screens/Login";
+=======
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator
+} from "react-navigation";
+
+>>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
 import MyGarden from "../screens/MyGarden1";
 import Vegetables from "../screens/Vegetables";
 import CreateAccount from "../screens/CreateAccount";

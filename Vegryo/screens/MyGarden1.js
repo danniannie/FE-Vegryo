@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, Image } from "react-native";
+import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import DraggableFlatList from "react-native-draggable-flatlist";
 import VeggieInfo from "../components/VeggieInfo";
 import { createData, createSeedLookup } from "../utils/utils"
 import * as api from "../utils/api"
+import { Overlay } from "react-native-elements"
+import Carrot from '../assets/Carrot.png'
 
 
 
@@ -15,7 +17,7 @@ class MyGarden extends Component {
     selectedVeg: "",
     gardenWidth: this.props.screenProps.width,
     gardenHeight: this.props.screenProps.height,
-    vegetables: {}
+    vegetables: {}, isVisible: true
   };
 
 
@@ -23,15 +25,7 @@ class MyGarden extends Component {
     return (
       <View style={{ height: 400 / this.state.data.length }}>
         <TouchableOpacity
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: isActive ? "rgba(104,120,43,0.6)" : null,
-            margin: isActive ? 5 : null,
-            borderRadius: 2,
-            borderWidth: isActive ? null : 2,
-            borderColor: isActive ? null : "#5576B5"
-          }}
+          style={isActive ? styles.selectedActive : styles.selectedNotActive}
           onPress={() => {
             this.setState({ selectedVeg: item.label });
           }}
@@ -44,7 +38,7 @@ class MyGarden extends Component {
               fontSize: 30,
               height: "100%",
               textAlign: 'center',
-
+              fontFamily: 'B612Mono-Regular'
             }}
           >
             {item.label}
@@ -56,11 +50,18 @@ class MyGarden extends Component {
   };
 
   render() {
-
-    const Soil =
-      "http://m.espacepourlavie.ca/sites/espacepourlavie.ca/files/styles/nocrop-gr8/public/istock_000015226257_620px_0.jpg?itok=SCNt6MGy";
     return (
       <View>
+        <View>
+          <Overlay isVisible={this.state.isVisible} onBackdropPress={() => { this.setState({ isVisible: false }) }} style={{ overlayBackgroundColor: 'grey' }}>
+            <View>
+              <View style={{ alignItems: 'center', margin: 10 }}><Image source={Carrot} style={{ height: 150, width: 150 }} resizeMode='center'></Image></View>
+
+              <View>
+                <Text style={styles.overlayText}>Drag and drop to rearrange your garden, or click on each vegetable to see more information.</Text>
+                <TouchableOpacity onPress={() => { this.setState({ isVisible: false }) }}><Text style={styles.overlayButton}>Got it!</Text></TouchableOpacity>
+              </View></View>
+          </Overlay></View>
         <View style={{ height: 400, margin: 10 }}>
           <View
             style={{
@@ -80,13 +81,15 @@ class MyGarden extends Component {
             onMoveEnd={({ data }) => this.setState({ data })}
           />
         </View>
-        <VeggieInfo
-          selectedVeg={this.state.selectedVeg}
-          seedLookUp={this.state.seedLookUp}
-          ammountOfVeg={this.state.data.length}
-          gardenWidth={this.state.gardenWidth}
-          gardenHeight={this.state.gardenHeight}
-        />
+        <View style={{ alignItems: 'center' }}>
+          <VeggieInfo
+            selectedVeg={this.state.selectedVeg}
+            seedLookUp={this.state.seedLookUp}
+            ammountOfVeg={this.state.data.length}
+            gardenWidth={this.state.gardenWidth}
+            gardenHeight={this.state.gardenHeight}
+          />
+        </View>
       </View>
     );
   }
@@ -99,5 +102,32 @@ class MyGarden extends Component {
   }
 
 }
+
+const styles = StyleSheet.create({
+  selectedActive: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(104,120,43,0.6)",
+    margin: 5,
+    borderRadius: 2,
+    borderWidth: null,
+    borderColor: null
+  },
+  selectedNotActive: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: null,
+    margin: null,
+    borderRadius: 2,
+    borderWidth: 2,
+    borderColor: "#5576B5"
+  },
+  overlayButton: {
+    fontSize: 30, fontFamily: 'B612Mono-Regular', color: "#ffa03a", padding: 5, textAlign: "center"
+  },
+  overlayText: {
+    fontSize: 25, fontFamily: 'B612Mono-Regular', textAlign: 'center'
+  }
+})
 
 export default MyGarden;
