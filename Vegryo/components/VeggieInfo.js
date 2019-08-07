@@ -11,7 +11,14 @@ export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
     plantDates: {},
-    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
+    growTime: {
+      Carrot: 70,
+      Potato: 70,
+      Asparagus: 60,
+      Broccoli: 150,
+      Sprouts: 180,
+      Cabbage: 90
+    },
     isDateTimePickerVisible: false
   };
 
