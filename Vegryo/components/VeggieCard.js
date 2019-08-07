@@ -29,17 +29,24 @@ export default class VeggieCard extends React.Component {
           </Text>
         </CollapseHeader>
         <CollapseBody style={styles.body}>
-
           <View style={{ flexDirection: "row", flex: 1, alignItems: "center" }}>
-
             <TouchableOpacity
               style={styles.button}
+              style={this.state.disabled ? styles.buttonPressed : styles.button}
               onPress={() => {
                 this.select("add");
               }}
               disabled={this.state.disabled}
             >
-              <Text style={styles.buttonText}>Add</Text>
+              <Text
+                style={
+                  this.state.disabled
+                    ? styles.buttonPressedText
+                    : styles.buttonText
+                }
+              >
+                Add
+              </Text>
             </TouchableOpacity>
 
             <Image
@@ -51,13 +58,23 @@ export default class VeggieCard extends React.Component {
             />
 
             <TouchableOpacity
-              style={styles.button}
+              style={
+                this.state.disabledRemove ? styles.button : styles.buttonPressed
+              }
               onPress={() => {
                 this.select("remove");
               }}
               disabled={this.state.disabledRemove}
             >
-              <Text style={styles.buttonText}>Remove</Text>
+              <Text
+                style={
+                  this.state.disabledRemove
+                    ? styles.buttonPressedText
+                    : styles.buttonText
+                }
+              >
+                Remove
+              </Text>
             </TouchableOpacity>
           </View>
           <Text style={styles.text}>
@@ -133,13 +150,25 @@ const styles = StyleSheet.create({
     borderColor: "black",
     borderWidth: 1,
     width: 100,
-
     height: 35
-
+  },
+  buttonPressed: {
+    borderColor: "grey",
+    color: "red",
+    borderWidth: 1,
+    width: 100,
+    height: 35
   },
   buttonText: {
     fontFamily: "B612Mono-Regular",
     fontSize: 20,
+    textAlign: "center",
+    padding: 3
+  },
+  buttonPressedText: {
+    fontFamily: "B612Mono-Regular",
+    fontSize: 20,
+    color: "grey",
     textAlign: "center",
     padding: 3
   },

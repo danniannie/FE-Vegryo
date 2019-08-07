@@ -1,3 +1,5 @@
+import * as api from "../utils/api";
+
 const gardenDesign = (vegetables, height, width) => {
   let area = Math.floor(height * width);
   const veggieKeys = Object.keys(vegetables);
@@ -34,4 +36,21 @@ const createSeedLookup = vegetableLayout => {
   }, {});
 };
 
-module.exports = { gardenDesign, daysGrown, createData, createSeedLookup };
+const addressLookup = vegetables => {
+  let pictureObj = {};
+  for (let i = 0; i < vegetables.length; i++) {
+    api.getPicturebyId(vegetables[i]).then(pictureURL => {
+      pictureObj.vegetables[i] = pictureURL;
+    });
+  }
+  console.log(pictureObj);
+  return pictureObj;
+};
+
+module.exports = {
+  gardenDesign,
+  daysGrown,
+  createData,
+  createSeedLookup,
+  addressLookup
+};

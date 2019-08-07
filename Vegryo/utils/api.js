@@ -17,9 +17,10 @@ export const postNewUser = async body => {
   return data;
 };
 
-export const patchToUser = async body => {
+
+export const patchToUser = async (user, body) => {
   const { data } = await axios.patch(
-    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/Old McDonald",
+    `https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/${user}`,
     body
   );
   return data;

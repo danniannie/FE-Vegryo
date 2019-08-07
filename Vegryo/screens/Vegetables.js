@@ -90,7 +90,14 @@ export default class Vegetables extends React.Component {
       screenProps.height,
       screenProps.width
     );
+    const body = {
+      text: {
+        GardenLayout: vegetableLayout
+      }
+    };
+
     screenProps.addVegetableLayout(vegetableLayout);
+    api.patchToUser(screenProps.user, body);
     navigation.navigate("MyGarden");
   };
 }
