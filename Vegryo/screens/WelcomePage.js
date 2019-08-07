@@ -15,13 +15,14 @@ class WelcomePage extends React.Component {
   state = {
     veg: [],
     dateplanted: {},
-    isLoading: true
+    isLoadingUser: true
   };
 
   render() {
     return (
       <ScrollView>
-        {this.state.isLoading ? (
+
+        {this.state.isLoadingUser ? (
           <AnimatedCarrot />
         ) : (
           <View>
@@ -38,17 +39,20 @@ class WelcomePage extends React.Component {
       </ScrollView>
     );
   }
+
+  componentDidMount = () => {
+    this.fetchUser().then(data => this.setState({ isLoadingUser: false }));
+  };
+  fetchUser = async () => {
+    const { user } = this.props.screenProps;
+    const data = await api.getUserbyID(user);
+    this.setState({
+      veg: Object.keys(data.data.Garden),
+      dateplanted: data.data.Garden
+    });
+    return data;
+  };
 }
-componentDidMount = () => {
-  this.fetchUser().then(data => this.setState({ isLoading: false }));
-};
-fetchUser = async () => {
-  const { user } = this.props.screenProps;
-  const data = await api.getUserbyID(user);
-  this.setState({
-    veg: Object.keys(data.data.Garden),
-    dateplanted: data.data.Garden
-  });
-};
+
 
 export default WelcomePage;

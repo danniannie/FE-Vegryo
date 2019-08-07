@@ -10,7 +10,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
-    plantDates: { Carrot: 1563231600, Potato: 1562153400 },
+    plantDates: {},
     growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
     isDateTimePickerVisible: false
   };
