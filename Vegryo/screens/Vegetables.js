@@ -28,6 +28,7 @@ export default class Vegetables extends React.Component {
           style={{
             fontFamily: "Chewy-Regular",
             fontSize: 30,
+
             margin: 10,
             padding: 5
           }}
