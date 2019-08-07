@@ -12,63 +12,65 @@ import CreateAccount from "../screens/CreateAccount";
 import WelcomePage from "../screens/WelcomePage";
 import Icon from "react-native-vector-icons/Ionicons";
 
-
 const HomeStack = createStackNavigator(
   {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
+    Home: { screen: WelcomePage }
+    // MyGarden: { screen: MyGarden },
+    // Vegetables: { screen: Vegetables },
+    // CreateAccount: { screen: CreateAccount }
   },
   {
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#cde8a4"
       },
-      headerTintColor: "#484538"
+      headerTintColor: "#484538",
+      headerTitle: "Home"
     }
   }
 );
 
 const MyGardenStack = createStackNavigator(
   {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
+    // Home: { screen: WelcomePage },
+    MyGarden: { screen: MyGarden }
+    // Vegetables: { screen: Vegetables },
+    // CreateAccount: { screen: CreateAccount }
   },
   {
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#cde8a4"
       },
-      headerTintColor: "#484538"
+      headerTintColor: "#484538",
+      headerTitle: "My Garden"
     }
   }
 );
 
 const VegetablesStack = createStackNavigator(
   {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
-    CreateAccount: { screen: CreateAccount }
+    // Home: { screen: WelcomePage },
+    // MyGarden: { screen: MyGarden },
+    Vegetables: { screen: Vegetables }
+    // CreateAccount: { screen: CreateAccount }
   },
   {
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#cde8a4"
       },
-      headerTintColor: "#484538"
+      headerTintColor: "#484538",
+      headerTitle: "Vegetables"
     }
   }
 );
 
 const CreateAccStack = createStackNavigator(
   {
-    Home: { screen: WelcomePage },
-    MyGarden: { screen: MyGarden },
-    Vegetables: { screen: Vegetables },
+    // Home: { screen: WelcomePage },
+    // MyGarden: { screen: MyGarden },
+    // Vegetables: { screen: Vegetables },
     CreateAccount: { screen: CreateAccount }
   },
   {
@@ -76,13 +78,11 @@ const CreateAccStack = createStackNavigator(
       headerStyle: {
         backgroundColor: "#cde8a4"
       },
-      headerTintColor: "#484538"
+      headerTintColor: "#484538",
+      headerTitle: "Create Account"
     }
   }
 );
-
-
-
 
 const BottomNav = createBottomTabNavigator(
   (paths = {
@@ -110,14 +110,14 @@ const BottomNav = createBottomTabNavigator(
         tabBarIcon: () => <Icon name="ios-person" size={25} />
       })
     }
-  },
+  }),
   {
     tabBarOptions: {
+      showLabel: false,
       style: {
         activeColor: "#e91e63",
         backgroundColor: "white"
       }
-
     }
   }
 );

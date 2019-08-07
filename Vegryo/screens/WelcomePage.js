@@ -17,7 +17,6 @@ class WelcomePage extends React.Component {
   };
 
   render() {
-    // console.log(this.state.dateplanted);
     return (
       <ScrollView>
         <Text
