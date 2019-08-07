@@ -10,14 +10,14 @@ class HomeVeggies extends React.Component {
   render() {
     const { icon } = this.state;
     const { veg, date } = this.props;
-    const pic = icon[2];
     return (
       <View style={styles.veg}>
         <Image
-          style={{ width: 70, height: 70, marginRight: 7 }}
-          source={{ uri: pic }}
-          resizeMode="center"
+          style={{ width: 70, height: 70, marginRight: 15 }}
+          source={{ uri: icon }}
+          resizeMode="contain"
         />
+
         <Text>
           Your {veg}'s will be ready to harvest{"\n"} in{" "}
           {Math.floor(daysGrown(date))} days.
@@ -26,24 +26,22 @@ class HomeVeggies extends React.Component {
     );
   }
 
-  componentDidMount = () => {
-    api.getAllVeggies().then(veggie => {
-      this.setState({
-        icon: veggie.map(veggie => {
-          return veggie.data.Picture;
-        })
-      });
-    });
+  componentDidMount() {
+    this.fetchPic();
+  }
+  fetchPic = async () => {
+    const { veg } = this.props;
+    const data = await api.getPicturebyId(veg);
+    this.setState({ icon: data });
   };
 }
 const styles = StyleSheet.create({
   veg: {
     backgroundColor: "whitesmoke",
     margin: 10,
-    padding: 30,
+    padding: 20,
     borderRadius: 3,
     flexDirection: "row",
-
     alignItems: "center"
   }
 });

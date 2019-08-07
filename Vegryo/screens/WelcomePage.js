@@ -9,11 +9,13 @@ import {
 import Weather from "../components/Weather";
 import HomeVeggies from "../components/HomeVeggies";
 import * as api from "../utils/api";
+import AnimatedCarrot from "../components/LoadingCard";
 
 class WelcomePage extends React.Component {
   state = {
     veg: [],
-    dateplanted: {}
+    dateplanted: {},
+    isLoading: true
   };
 
   render() {
@@ -23,29 +25,37 @@ class WelcomePage extends React.Component {
           style={{
             textAlign: "center",
             padding: 35,
+            // fontFamily: "Chewy-Regular",
             fontSize: 20,
-            backgroundColor: "green"
+            backgroundColor: "whitesmoke"
           }}
         >
           Welcome fellow Gardener!
         </Text>
-
-        <Weather />
-        {this.state.veg.map(veggies => (
-          <HomeVeggies
-            key={veggies}
-            veg={veggies}
-            date={this.state.dateplanted[veggies]}
-          />
-        ))}
+        {this.state.isLoading ? (
+          <AnimatedCarrot />
+        ) : (
+          <View>
+            <Weather />
+            {this.state.veg.map(veggies => (
+              <HomeVeggies
+                key={veggies}
+                veg={veggies}
+                date={this.state.dateplanted[veggies]}
+              />
+            ))}
+          </View>
+        )}
       </ScrollView>
     );
   }
   componentDidMount = () => {
-    this.fetchUser();
+    this.fetchUser().then(data => this.setState({ isLoading: false }));
   };
   fetchUser = async () => {
-    const data = await api.getUserbyID();
+    const { user } = this.props.screenProps;
+    const data = await api.getUserbyID(user);
+
     this.setState({
       veg: Object.keys(data.data.Garden),
       dateplanted: data.data.Garden
