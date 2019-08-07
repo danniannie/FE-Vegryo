@@ -17,7 +17,6 @@ export const postNewUser = async body => {
   return data;
 };
 
-
 export const patchToUser = async body => {
   const { data } = await axios.patch(
     "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/Users/Old McDonald",
@@ -33,9 +32,9 @@ export const getWeather = async () => {
   return data;
 };
 
-export const getUserbyID = async () => {
+export const getUserbyID = async user => {
   const { data } = await axios.get(
-    "https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/users/Old%20McDonald"
+    `https://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/users/${user}`
   );
   return data;
 };
@@ -44,5 +43,6 @@ export const getPicturebyId = async vegetable => {
   const { data } = await axios.get(
     `http://us-central1-test-push-notifications-7e737.cloudfunctions.net/vegryo/api/vegetableimages/${vegetable}`
   );
-  return data.address;
+
+  return data.data.address;
 };
