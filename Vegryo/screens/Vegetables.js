@@ -76,9 +76,10 @@ export default class Vegetables extends React.Component {
 const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
-    borderColor: "black",
-    width: 300,
-    height: 50,
+    borderRadius: 3,
+    borderColor: "white",
+    width: "100%",
+    height: 40,
     margin: 5,
     backgroundColor: "#5576B5",
     justifyContent: "center"
