@@ -28,7 +28,6 @@ export default class Vegetables extends React.Component {
           style={{
             fontFamily: "Chewy-Regular",
             fontSize: 30,
-
             margin: 10,
             padding: 5
           }}
@@ -48,30 +47,32 @@ export default class Vegetables extends React.Component {
             />
           ))
         )}
-        <View style={{ alignItems: "center" }}>
-          <TouchableOpacity
-            onPress={this.onPress}
-            style={{
-              borderWidth: 1,
-              borderColor: "black",
-              width: 300,
-              height: 30,
-              margin: 5,
-              backgroundColor: "#5576B5"
-            }}
-          >
-            <Text
+        {isLoading ? null : (
+          <View style={{ alignItems: "center" }}>
+            <TouchableOpacity
+              onPress={this.onPress}
               style={{
-                textAlign: "center",
-                padding: 5,
-                color: "white",
-                fontFamily: "B612Mono-Regular"
+                borderWidth: 1,
+                borderColor: "black",
+                width: 300,
+                height: 30,
+                margin: 5,
+                backgroundColor: "#5576B5"
               }}
             >
-              Build your Garden
-            </Text>
-          </TouchableOpacity>
-        </View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  padding: 5,
+                  color: "white",
+                  fontFamily: "B612Mono-Regular"
+                }}
+              >
+                Build your Garden
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </ScrollView>
     );
   }

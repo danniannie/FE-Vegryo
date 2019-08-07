@@ -31,7 +31,7 @@ export default class AnimatedCarrot extends Component {
         style={{
           width: 200,
           height: 200,
-          margin: 50,
+          margin: 80,
           alignItems: "center",
           transform: [{ rotate: RotateData }]
         }}

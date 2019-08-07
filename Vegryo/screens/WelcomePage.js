@@ -9,11 +9,13 @@ import {
 import Weather from "../components/Weather";
 import HomeVeggies from "../components/HomeVeggies";
 import * as api from "../utils/api";
+import AnimatedCarrot from "../components/LoadingCard";
 
 class WelcomePage extends React.Component {
   state = {
     veg: [],
-    dateplanted: {}
+    dateplanted: {},
+    isLoading: true
   };
 
   render() {
@@ -29,20 +31,25 @@ class WelcomePage extends React.Component {
         >
           Welcome fellow Gardener!
         </Text>
-
-        <Weather />
-        {this.state.veg.map(veggies => (
-          <HomeVeggies
-            key={veggies}
-            veg={veggies}
-            date={this.state.dateplanted[veggies]}
-          />
-        ))}
+        {this.state.isLoading ? (
+          <AnimatedCarrot />
+        ) : (
+          <View>
+            <Weather />
+            {this.state.veg.map(veggies => (
+              <HomeVeggies
+                key={veggies}
+                veg={veggies}
+                date={this.state.dateplanted[veggies]}
+              />
+            ))}
+          </View>
+        )}
       </ScrollView>
     );
   }
   componentDidMount = () => {
-    this.fetchUser();
+    this.fetchUser().then(data => this.setState({ isLoading: false }));
   };
   fetchUser = async () => {
     const data = await api.getUserbyID();
