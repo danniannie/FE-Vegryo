@@ -27,6 +27,7 @@ class Weather extends React.Component {
       rainPic,
       thunderPic
     } = this.state;
+
     return (
       <View style={styles.weather}>
         <Text style={{ fontSize: 22, margin: 15 }}>
@@ -48,7 +49,8 @@ class Weather extends React.Component {
 
         <Image
           style={{ width: 180, height: 180, position: "absolute", right: 0 }}
-          source={cloudPic}
+          source={description.includes("cloud") ? cloudPic : rainPic}
+          resizeMode="contain"
         />
       </View>
     );
