@@ -3,12 +3,9 @@ import { StyleSheet, Text, View, Button, Image } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { daysGrown } from "../utils/utils";
-<<<<<<< HEAD
-import moment from "moment";
-=======
+
 import * as api from "../utils/api";
 import { TouchableOpacity } from "react-native-gesture-handler";
->>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
 
 export default class VeggieInfo extends Component {
   state = {
@@ -59,12 +56,6 @@ export default class VeggieInfo extends Component {
           alignItems: "center"
         }}
       >
-<<<<<<< HEAD
-        <Text>
-          {selectedVeg}
-          {selectedVeg ? ": " : null}
-          {seedLookUp[selectedVeg]}
-=======
         <Text
           style={{
             textAlign: "center",
@@ -75,7 +66,6 @@ export default class VeggieInfo extends Component {
           {selectedVeg
             ? `You're able to plant ${seedLookUp[selectedVeg]} crops`
             : null}
->>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
           {"\n"}
           {selectedVeg
             ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
@@ -122,8 +112,6 @@ export default class VeggieInfo extends Component {
       </View>
     );
   }
-<<<<<<< HEAD
-=======
 
   componentDidMount() {
     api
@@ -136,7 +124,6 @@ export default class VeggieInfo extends Component {
       //console.log(this.state.plantDates);
     }
   }
->>>>>>> 89c7d57b7078ea4e9b461695f73cc1f8091e76b1
 }
 const styles = StyleSheet.create({
   button: {
