@@ -28,14 +28,8 @@ class CreateAccount extends Component {
     return (
       <ScrollView>
         <View style={styles.container}>
-          <Text style={styles.header}>Create Account:</Text>
           <View style={styles.form}>
-            <Form
-              ref="form"
-              type={Person}
-              options={options}
-              style={{ backgroundColor: "black" }}
-            />
+            <Form ref="form" type={Person} options={options} />
           </View>
           <TouchableHighlight
             style={styles.button}
@@ -94,8 +88,9 @@ stylesheet.textbox.error.marginBottom = 0;
 stylesheet.textboxView.normal.borderBottomWidth = 1;
 stylesheet.textboxView.normal.borderColor = "lightgrey";
 stylesheet.textboxView.normal.marginBottom = 5;
-stylesheet.controlLabel.normal.color = "brown";
-stylesheet.textbox.normal.color = "pink";
+stylesheet.controlLabel.normal.color = "#ffa03a";
+stylesheet.textbox.normal.color = "brown";
+stylesheet.controlLabel.normal.fontFamily = "B612Mono-Regular";
 
 stylesheet.textboxView.error.borderWidth = 0;
 stylesheet.textboxView.error.borderRadius = 0;
@@ -107,29 +102,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     margin: 10
   },
-  header: {
-    padding: 20,
-    width: "100%",
-    color: "white",
-    textAlign: "center",
-    fontSize: 20,
-    backgroundColor: "rgba(104,120,43,0.6)"
-  },
+
   form: {
-    margin: 10
+    margin: 10,
+    fontFamily: "B612Mono-Regular"
   },
   buttonText: {
     fontSize: 18,
     color: "white",
-    alignSelf: "center"
+    alignSelf: "center",
+    fontFamily: "B612Mono-Regular"
   },
   button: {
     height: 40,
-    backgroundColor: "rgba(104,120,43,0.6)",
+    backgroundColor: "#5576B5",
     borderColor: "white",
     borderWidth: 1,
     borderRadius: 3,
-
     alignSelf: "stretch",
     justifyContent: "center",
     width: "100%"

@@ -30,7 +30,9 @@ class Weather extends React.Component {
 
     return (
       <View style={styles.weather}>
-        <Text style={{ fontSize: 22, margin: 15 }}>
+        <Text
+          style={{ fontSize: 22, margin: 15, fontFamily: "B612Mono-Regular" }}
+        >
           {KelvinToCelcius(Number(temperature)).toFixed(1)}˚C
         </Text>
         <Text style={styles.text}>
@@ -41,14 +43,21 @@ class Weather extends React.Component {
         <Text
           style={{
             fontSize: 30,
-            margin: 15
+            margin: 15,
+            fontFamily: "B612Mono-Regular"
           }}
         >
           {city}, {country}
         </Text>
 
         <Image
-          style={{ width: 180, height: 180, position: "absolute", right: 0 }}
+          style={{
+            width: 180,
+            height: 180,
+            position: "absolute",
+            right: 0,
+            top: 10
+          }}
           source={description.includes("cloud") ? cloudPic : rainPic}
           resizeMode="contain"
         />
@@ -76,11 +85,13 @@ class Weather extends React.Component {
 styles = StyleSheet.create({
   weather: {
     height: 200,
-    backgroundColor: "whitesmoke"
+    backgroundColor: "whitesmoke",
+    fontFamily: "B612Mono-Regular"
   },
   text: {
     fontSize: 16,
-    margin: 15
+    margin: 15,
+    fontFamily: "B612Mono-Regular"
   }
 });
 

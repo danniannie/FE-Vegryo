@@ -21,17 +21,7 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text
-          style={{
-            textAlign: "center",
-            padding: 35,
-            // fontFamily: "Chewy-Regular",
-            fontSize: 20,
-            backgroundColor: "whitesmoke"
-          }}
-        >
-          Welcome fellow Gardener!
-        </Text>
+
         {this.state.isLoadingUser ? (
           <AnimatedCarrot />
         ) : (
@@ -49,6 +39,7 @@ class WelcomePage extends React.Component {
       </ScrollView>
     );
   }
+
   componentDidMount = () => {
     this.fetchUser().then(data => this.setState({ isLoadingUser: false }));
   };
@@ -62,5 +53,6 @@ class WelcomePage extends React.Component {
     return data;
   };
 }
+
 
 export default WelcomePage;

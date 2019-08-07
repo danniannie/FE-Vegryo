@@ -20,6 +20,7 @@ class HomeVeggies extends React.Component {
           resizeMode="contain"
         />
 
+
         {daysGrown(date) <= 0 ? (
           <View>
             <Text>
@@ -32,6 +33,7 @@ class HomeVeggies extends React.Component {
             {Math.floor(daysGrown(date))} days.
           </Text>
         )}
+
       </View>
     );
   }
