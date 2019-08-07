@@ -22,28 +22,6 @@ export default class VeggieInfo extends Component {
     isDateTimePickerVisible: false
   };
 
-  showDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: true });
-  };
-
-  hideDateTimePicker = () => {
-    this.setState({ isDateTimePickerVisible: false });
-  };
-
-  handleDatePicked = date => {
-    this.setState({
-      plantDates: {
-        ...this.state.plantDates,
-        [this.props.selectedVeg]: new Date(date).getTime() / 1000
-      }
-    });
-    api.patchToUser({
-      text: { Garden: this.state.plantDates }
-    });
-    //.then(data => console.log(data));
-    this.hideDateTimePicker();
-  };
-
   render() {
     const {
       selectedVeg,
@@ -133,6 +111,28 @@ export default class VeggieInfo extends Component {
       //console.log(this.state.plantDates);
     }
   }
+
+  showDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: true });
+  };
+
+  hideDateTimePicker = () => {
+    this.setState({ isDateTimePickerVisible: false });
+  };
+
+  handleDatePicked = date => {
+    this.setState({
+      plantDates: {
+        ...this.state.plantDates,
+        [this.props.selectedVeg]: new Date(date).getTime() / 1000
+      }
+    });
+    api.patchToUser({
+      text: { Garden: this.state.plantDates }
+    });
+    //.then(data => console.log(data));
+    this.hideDateTimePicker();
+  };
 }
 const styles = StyleSheet.create({
   button: {

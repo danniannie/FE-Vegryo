@@ -23,40 +23,7 @@ const Person = t.struct({
   City: t.String
 });
 
-// const options = {};
-
 class CreateAccount extends Component {
-  onPress = () => {
-    const {
-      Username,
-      Name,
-      Email,
-      GardenLength,
-      GardenWidth,
-      City
-    } = this.refs.form.getValue();
-
-    const body = {
-      id: Username,
-      text: {
-        Name,
-        Username,
-        Email,
-        GardenLength,
-        GardenWidth,
-        City
-      }
-    };
-
-    if (body) {
-      api
-        .postNewUser(body)
-        .then((user) =>
-          this.props.screenProps.addDimensions(GardenLength, GardenWidth)
-        );
-    }
-  };
-
   render() {
     return (
       <ScrollView>
@@ -81,6 +48,41 @@ class CreateAccount extends Component {
       </ScrollView>
     );
   }
+
+  onPress = () => {
+    const { addUser } = this.props.screenProps;
+
+    const {
+      Username,
+      Name,
+      Email,
+      GardenLength,
+      GardenWidth,
+      City
+    } = this.refs.form.getValue();
+
+    const body = {
+      id: Username,
+      text: {
+        Name,
+        Username,
+        Email,
+        GardenLength,
+        GardenWidth,
+        City
+      }
+    };
+
+    if (body) {
+      api
+        .postNewUser(body)
+        .then(user =>
+          this.props.screenProps.addDimensions(GardenLength, GardenWidth)
+        );
+    }
+    addUser(Username);
+    this.props.navigation.navigate("Vegetables");
+  };
 }
 const { stylesheet } = _.cloneDeep(Form);
 const options = { stylesheet: stylesheet };
