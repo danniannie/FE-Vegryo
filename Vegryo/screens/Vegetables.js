@@ -17,7 +17,7 @@ export default class Vegetables extends React.Component {
 
     return (
       <ScrollView >
-        <Text style={{ fontFamily: 'JustAnotherHand-Regular', fontSize: 50, margin: 10, padding: 5 }}>Select your vegetables...</Text>
+        <Text style={{ fontFamily: 'Chewy-Regular', fontSize: 30, margin: 10, padding: 5 }}>Select your vegetables...</Text>
         {isLoading ? (
           <AnimatedCarrot />
         ) : (
