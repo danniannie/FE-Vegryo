@@ -93,12 +93,6 @@ export default class VeggieInfo extends Component {
     );
   }
 
-  componentDidMount() {
-    api
-      .getUserbyID()
-      .then(res => this.setState({ plantDates: res.data.Garden }));
-  }
-
   showDateTimePicker = () => {
     this.setState({ isDateTimePickerVisible: true });
   };
