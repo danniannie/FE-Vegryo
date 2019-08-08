@@ -5,11 +5,20 @@ import { daysGrown } from "../utils/utils";
 
 class HomeVeggies extends React.Component {
   state = {
+    growTime: {
+      Carrot: 70,
+      Potato: 70,
+      Asparagus: 60,
+      Broccoli: 150,
+      Sprouts: 180,
+      Cabbage: 90
+    },
     icon: "..."
   };
   render() {
-    const { icon } = this.state;
+    const { icon, growTime } = this.state;
     const { veg, date } = this.props;
+    console.log(date);
     return (
       <View style={styles.veg}>
         <Image
@@ -20,17 +29,17 @@ class HomeVeggies extends React.Component {
           resizeMode="contain"
         />
 
-        {daysGrown(date) <= 0 ? (
+        {growTime[veg] - daysGrown(date) <= 0 ? (
           <View>
-            <Text>
-              Your {veg} are ready
+            <Text style={{ fontFamily: "B612Mono-Regular" }}>
+              Your {veg} crops are ready
               {"\n"}to harvest!!
             </Text>
           </View>
         ) : (
-          <Text>
-            Your {veg.slice(-1) === "s" ? veg + "'" : veg + "s"} will be ready
-            to {"\n"}harvest in {Math.floor(daysGrown(date))} days.
+          <Text style={{ fontFamily: "B612Mono-Regular" }}>
+            Your {veg} crops will be {"\n"}ready to harvest in{" "}
+            {Math.floor(daysGrown(date))} days.
           </Text>
         )}
       </View>

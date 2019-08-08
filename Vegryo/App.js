@@ -9,7 +9,8 @@ export default class App extends Component {
     width: 0,
     selectedVeggies: {},
     fontLoaded: false,
-    user: "Anne"
+    user: "Anne",
+    plantDates: {}
   };
 
   render() {
@@ -25,11 +26,18 @@ export default class App extends Component {
           handleRemove: this.handleRemove,
           selectedVeggies: this.state.selectedVeggies,
           addUser: this.addUser,
-          user: this.state.user
+          user: this.state.user,
+          plantDates: this.state.plantDates,
+          addPlantDate: this.addPlantDate
         }}
       />
     );
   }
+
+  addPlantDate = plantDates => {
+    this.setState({ plantDates });
+  };
+
   addVegetableLayout = vegetableLayout => {
     this.setState({ vegetableLayout });
   };

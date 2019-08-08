@@ -18,8 +18,8 @@ const Person = t.struct({
   Name: t.String,
   Username: t.String,
   Email: t.String,
-  GardenLength: t.Number,
-  GardenWidth: t.Number,
+  "GardenLength (cm)": t.Number,
+  "GardenWidth (cm)": t.Number,
   City: t.String
 });
 

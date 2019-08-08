@@ -9,7 +9,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class VeggieInfo extends Component {
   state = {
-    user: "Old McDonald",
     plantDates: {},
     growTime: {
       Carrot: 70,
@@ -53,7 +52,7 @@ export default class VeggieInfo extends Component {
               }}
             >
               {"\n"}
-              {"\n"}Your {selectedVeg} is ready to harvest!!!
+              {"\n"}Your crops are ready to harvest!
             </Text>
           </View>
         ) : (
@@ -108,7 +107,8 @@ export default class VeggieInfo extends Component {
                 style={{
                   textAlign: "center",
                   padding: 1,
-                  fontFamily: "B612Mono-Regular"
+                  fontFamily: "B612Mono-Regular",
+                  alignItems: "center"
                 }}
               >
                 <TouchableOpacity
@@ -142,10 +142,11 @@ export default class VeggieInfo extends Component {
 
   handleDatePicked = date => {
     const { plantDates } = this.state;
+    const { addPlantDate } = this.props;
     plantDates[this.props.selectedVeg] = new Date(date).getTime() / 1000;
 
     this.setState({ plantDates });
-
+    addPlantDate(plantDates);
     api.patchToUser(this.props.user, {
       text: { Garden: this.state.plantDates }
     });

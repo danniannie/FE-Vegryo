@@ -23,7 +23,14 @@ export default class Vegetables extends React.Component {
     const { selectedVeggies } = this.props.screenProps;
 
     return (
-      <ScrollView>
+      <ScrollView
+        style={{
+          marginBottom: 0,
+          marginTop: 5,
+          marginLeft: 10,
+          marginRight: 10
+        }}
+      >
         {isLoading ? (
           <AnimatedCarrot />
         ) : (
@@ -75,19 +82,19 @@ export default class Vegetables extends React.Component {
 
 const styles = StyleSheet.create({
   button: {
+    margin: 5,
+    height: 40,
+    backgroundColor: "#5576B5",
+    borderColor: "white",
     borderWidth: 1,
     borderRadius: 3,
-    borderColor: "white",
-    width: "100%",
-    height: 40,
-    margin: 5,
-    backgroundColor: "#5576B5",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "100%"
   },
   buttonText: {
-    textAlign: "center",
-    padding: 5,
+    fontSize: 18,
     color: "white",
+    alignSelf: "center",
     fontFamily: "B612Mono-Regular"
   }
 });
