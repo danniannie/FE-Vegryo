@@ -61,7 +61,7 @@ const VegetablesStack = createStackNavigator(
         backgroundColor: "#cde8a4"
       },
       headerTintColor: "#484538",
-      headerTitle: "Vegetables"
+      headerTitle: "Select your vegetables"
     }
   }
 );

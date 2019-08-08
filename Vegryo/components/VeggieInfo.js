@@ -11,7 +11,14 @@ export default class VeggieInfo extends Component {
   state = {
     user: "Old McDonald",
     plantDates: {},
-    growTime: { Carrot: 70, Potato: 70, Asparagus: 60 },
+    growTime: {
+      Carrot: 70,
+      Potato: 70,
+      Asparagus: 60,
+      Broccoli: 150,
+      Sprouts: 180,
+      Cabbage: 90
+    },
     isDateTimePickerVisible: false
   };
 
@@ -36,59 +43,91 @@ export default class VeggieInfo extends Component {
           alignItems: "center"
         }}
       >
-        <Text
-          style={{
-            textAlign: "center",
-            padding: 1,
-            fontFamily: "B612Mono-Regular"
-          }}
-        >
-          {selectedVeg
-            ? `You're able to plant ${seedLookUp[selectedVeg]} crops`
-            : null}
-          {"\n"}
-          {selectedVeg
-            ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
-            : null}
-          {"\n"}
-          {selectedVeg ? `Row Width: ${Math.floor(gardenWidth)}cm` : null}
-          {"\n"}
-          {selectedVeg
-            ? `Days until harvest: ${growTime[selectedVeg] -
-                Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
-            : null}
-        </Text>
-
-        {selectedVeg ? (
-          <ProgressBar
-            progress={
-              daysGrown(plantDates[selectedVeg]) / growTime[selectedVeg] || 0
-            }
-            width={200}
-            color={"#FFA03A"}
-          />
-        ) : null}
-
-        {selectedVeg ? (
+        {growTime[selectedVeg] - daysGrown(plantDates[selectedVeg]) <= 0 ? (
           <View>
-            {growTime[selectedVeg] - daysGrown(plantDates[selectedVeg]) <= 0 ? (
-              <Text>{`Time to Harvest your ${selectedVeg}!!!`}</Text>
-            ) : (
-              <TouchableOpacity
-                onPress={this.showDateTimePicker}
-                style={styles.button}
-              >
-                <Text style={styles.buttonText}>Date Planted</Text>
-              </TouchableOpacity>
-            )}
-            <DateTimePicker
-              isVisible={this.state.isDateTimePickerVisible}
-              onConfirm={this.handleDatePicked}
-              onCancel={this.hideDateTimePicker}
-              color="#FFA03A"
-            />
+            <Text
+              style={{
+                textAlign: "center",
+                padding: 1,
+                fontFamily: "B612Mono-Regular"
+              }}
+            >
+              {"\n"}
+              {"\n"}Your {selectedVeg} is ready to harvest!!!
+            </Text>
           </View>
-        ) : null}
+        ) : (
+          <View>
+            <Text
+              style={{
+                textAlign: "center",
+                padding: 1,
+                fontFamily: "B612Mono-Regular"
+              }}
+            >
+              {selectedVeg.length > 0
+                ? `You're able to plant ${seedLookUp[selectedVeg]} crops`
+                : null}
+              {"\n"}
+              {selectedVeg.length > 0
+                ? `Row Height: ${Math.floor(gardenHeight / ammountOfVeg)}cm`
+                : null}
+              {"\n"}
+              {selectedVeg.length > 0
+                ? `Row Width: ${Math.floor(gardenWidth)}cm`
+                : null}
+            </Text>
+            <Text
+              style={{
+                textAlign: "center",
+                padding: 1,
+                fontFamily: "B612Mono-Regular"
+              }}
+            >
+              {selectedVeg.length > 0
+                ? `Days until harvest: ${growTime[selectedVeg] -
+                    Math.floor(daysGrown(plantDates[selectedVeg])) || 0} `
+                : null}
+            </Text>
+            {selectedVeg.length > 0 ? (
+              <ProgressBar
+                style={{
+                  textAlign: "center"
+                }}
+                progress={
+                  daysGrown(plantDates[selectedVeg]) / growTime[selectedVeg] ||
+                  0
+                }
+                width={200}
+                color={"#FFA03A"}
+              />
+            ) : null}
+
+            {selectedVeg.length > 0 ? (
+              <View
+                style={{
+                  textAlign: "center",
+                  padding: 1,
+                  fontFamily: "B612Mono-Regular"
+                }}
+              >
+                <TouchableOpacity
+                  onPress={this.showDateTimePicker}
+                  style={styles.button}
+                >
+                  <Text style={styles.buttonText}>Date Planted</Text>
+                </TouchableOpacity>
+
+                <DateTimePicker
+                  isVisible={this.state.isDateTimePickerVisible}
+                  onConfirm={this.handleDatePicked}
+                  onCancel={this.hideDateTimePicker}
+                  color="#FFA03A"
+                />
+              </View>
+            ) : null}
+          </View>
+        )}
       </View>
     );
   }
