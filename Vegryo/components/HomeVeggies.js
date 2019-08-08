@@ -18,7 +18,7 @@ class HomeVeggies extends React.Component {
   render() {
     const { icon, growTime } = this.state;
     const { veg, date } = this.props;
-    console.log(date);
+
     return (
       <View style={styles.veg}>
         <Image

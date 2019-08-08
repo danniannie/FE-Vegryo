@@ -147,11 +147,22 @@ export default class VeggieInfo extends Component {
 
     this.setState({ plantDates });
     addPlantDate(plantDates);
+
     api.patchToUser(this.props.user, {
       text: { Garden: this.state.plantDates }
     });
 
     this.hideDateTimePicker();
+  };
+
+  componentDidMount = () => {
+    const { user } = this.props;
+    api.getUserbyID(user).then(data => {
+      if (data.data.hasOwnProperty("Garden")) {
+        const plantDates = data.data.Garden;
+        this.setState({ plantDates });
+      }
+    });
   };
 }
 const styles = StyleSheet.create({
