@@ -58,7 +58,7 @@ class Weather extends React.Component {
             right: 0,
             top: 10
           }}
-          source={description.includes("cloud") ? cloudPic : rainPic}
+          source={description.includes("rain") ? rainPic : cloudPic}
           resizeMode="contain"
         />
       </View>

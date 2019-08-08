@@ -20,20 +20,19 @@ class HomeVeggies extends React.Component {
           resizeMode="contain"
         />
 
-
         {daysGrown(date) <= 0 ? (
           <View>
             <Text>
-              Your {veg}'s are ready {"\n"}to harvest!!
+              Your {veg} are ready
+              {"\n"}to harvest!!
             </Text>
           </View>
         ) : (
           <Text>
-            Your {veg}'s will be ready to {"\n"}harvest in{" "}
-            {Math.floor(daysGrown(date))} days.
+            Your {veg.slice(-1) === "s" ? veg + "'" : veg + "s"} will be ready
+            to {"\n"}harvest in {Math.floor(daysGrown(date))} days.
           </Text>
         )}
-
       </View>
     );
   }
@@ -46,7 +45,6 @@ class HomeVeggies extends React.Component {
     const { veg } = this.props;
     const data = await api.getPicturebyId(veg);
     this.setState({ icon: data });
-    console.log(this.state.icon);
   };
 }
 const styles = StyleSheet.create({

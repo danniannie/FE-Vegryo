@@ -43,7 +43,6 @@ const addressLookup = vegetables => {
       pictureObj.vegetables[i] = pictureURL;
     });
   }
-  console.log(pictureObj);
   return pictureObj;
 };
 
