@@ -37,8 +37,7 @@ export default class VeggieInfo extends Component {
           height: 125,
           margin: 3,
           padding: 2,
-          borderWidth: 1,
-          borderColor: "black",
+          backgroundColor: "whitesmoke",
           alignItems: "center"
         }}
       >
@@ -48,7 +47,7 @@ export default class VeggieInfo extends Component {
               style={{
                 textAlign: "center",
                 padding: 1,
-                fontFamily: "B612Mono-Regular"
+                backgroundColor: "whitesmoke"
               }}
             >
               {"\n"}
@@ -56,11 +55,15 @@ export default class VeggieInfo extends Component {
             </Text>
           </View>
         ) : (
-          <View>
+          <View
+            style={{
+              alignItems: "center"
+            }}
+          >
             <Text
               style={{
                 textAlign: "center",
-                padding: 1,
+                padding: 5,
                 fontFamily: "B612Mono-Regular"
               }}
             >
@@ -90,9 +93,6 @@ export default class VeggieInfo extends Component {
             </Text>
             {selectedVeg.length > 0 ? (
               <ProgressBar
-                style={{
-                  textAlign: "center"
-                }}
                 progress={
                   daysGrown(plantDates[selectedVeg]) / growTime[selectedVeg] ||
                   0
@@ -156,8 +156,6 @@ export default class VeggieInfo extends Component {
 }
 const styles = StyleSheet.create({
   button: {
-    borderWidth: 1,
-    borderColor: "black",
     width: 120,
     height: 30,
     margin: 5,

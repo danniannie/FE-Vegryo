@@ -25,7 +25,7 @@ const HomeStack = createStackNavigator(
         backgroundColor: "#cde8a4"
       },
       headerTintColor: "#484538",
-      headerTitle: "Garden Diary"
+      headerTitle: "Vegryo"
     }
   }
 );
