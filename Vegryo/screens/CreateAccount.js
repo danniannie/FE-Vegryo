@@ -18,8 +18,8 @@ const Person = t.struct({
   Name: t.String,
   Username: t.String,
   Email: t.String,
-  "GardenLength (cm)": t.Number,
-  "GardenWidth (cm)": t.Number,
+  GardenLengthCm: t.Number,
+  GardenWidthCm: t.Number,
   City: t.String
 });
 
@@ -50,8 +50,8 @@ class CreateAccount extends Component {
       Username,
       Name,
       Email,
-      GardenLength,
-      GardenWidth,
+      GardenLengthCm,
+      GardenWidthCm,
       City
     } = this.refs.form.getValue();
 
@@ -61,8 +61,8 @@ class CreateAccount extends Component {
         Name,
         Username,
         Email,
-        GardenLength,
-        GardenWidth,
+        GardenLength: GardenLengthCm,
+        GardenWidth: GardenWidthCm,
         City
       }
     };
@@ -71,7 +71,7 @@ class CreateAccount extends Component {
       api
         .postNewUser(body)
         .then(user =>
-          this.props.screenProps.addDimensions(GardenLength, GardenWidth)
+          this.props.screenProps.addDimensions(GardenLengthCm, GardenWidthCm)
         );
     }
     addUser(Username);
@@ -79,7 +79,9 @@ class CreateAccount extends Component {
   };
 }
 const { stylesheet } = _.cloneDeep(Form);
-const options = { stylesheet: stylesheet };
+const options = {
+  stylesheet: stylesheet
+};
 stylesheet.textbox.normal.borderWidth = 0;
 stylesheet.textbox.normal.marginBottom = 0;
 stylesheet.textbox.error.borderWidth = 0;
