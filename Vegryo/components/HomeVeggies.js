@@ -33,7 +33,7 @@ class HomeVeggies extends React.Component {
           <View>
             <Text style={{ fontFamily: "B612Mono-Regular" }}>
               Your {veg} crops are ready
-              {"\n"}to harvest!!
+              {"\n"}to harvest!
             </Text>
           </View>
         ) : (

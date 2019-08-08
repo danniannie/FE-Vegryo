@@ -50,9 +50,6 @@ class WelcomePage extends React.Component {
   componentDidUpdate = (prevProps, prevState) => {
     const { plantDates } = this.props.screenProps;
     if (plantDates !== prevProps.screenProps.plantDates) {
-      console.log(Object.keys(plantDates));
-      console.log(Object.values(plantDates));
-
       this.setState({
         veg: Object.keys(plantDates),
         dateplanted: plantDates
@@ -66,11 +63,13 @@ class WelcomePage extends React.Component {
   fetchUser = async () => {
     const { user } = this.props.screenProps;
     const data = await api.getUserbyID(user);
-    this.setState({
-      veg: Object.keys(data.data.Garden),
-      dateplanted: data.data.Garden
-    });
-    return data;
+    if (data.data.hasOwnProperty("Garden")) {
+      this.setState({
+        veg: Object.keys(data.data.Garden),
+        dateplanted: data.data.Garden
+      });
+      return data;
+    }
   };
 }
 

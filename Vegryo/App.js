@@ -9,7 +9,7 @@ export default class App extends Component {
     width: 0,
     selectedVeggies: {},
     fontLoaded: false,
-    user: "Anne",
+    user: "G",
     plantDates: {}
   };
 
