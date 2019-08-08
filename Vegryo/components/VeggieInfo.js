@@ -147,6 +147,7 @@ export default class VeggieInfo extends Component {
 
     this.setState({ plantDates });
     addPlantDate(plantDates);
+
     api.patchToUser(this.props.user, {
       text: { Garden: this.state.plantDates }
     });
