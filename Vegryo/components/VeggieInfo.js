@@ -141,15 +141,15 @@ export default class VeggieInfo extends Component {
   };
 
   handleDatePicked = date => {
-    this.setState({
-      plantDates: {
-        ...this.state.plantDates,
-        [this.props.selectedVeg]: new Date(date).getTime() / 1000
-      }
-    });
+    const { plantDates } = this.state;
+    plantDates[this.props.selectedVeg] = new Date(date).getTime() / 1000;
+
+    this.setState({ plantDates });
+
     api.patchToUser(this.props.user, {
       text: { Garden: this.state.plantDates }
     });
+
     this.hideDateTimePicker();
   };
 }

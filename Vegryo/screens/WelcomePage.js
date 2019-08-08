@@ -57,6 +57,8 @@ class WelcomePage extends React.Component {
   //   });
   // };
 
+  componentDidUpdate = () => {};
+
   componentDidMount = () => {
     this.fetchUser().then(data => this.setState({ isLoadingUser: false }));
   };
