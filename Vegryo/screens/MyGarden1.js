@@ -45,41 +45,76 @@ class MyGarden extends Component {
   };
 
   render() {
-    const { user } = this.props.screenProps;
+    const { user, vegetableLayout } = this.props.screenProps;
+
     return (
       <View>
         <View>
-          <Overlay
-            isVisible={this.state.isVisible}
-            onBackdropPress={() => {
-              this.setState({ isVisible: false });
-            }}
-            style={{ overlayBackgroundColor: "grey" }}
-          >
-            <View>
-              <View style={{ alignItems: "center", margin: 10 }}>
-                <Image
-                  source={Carrot}
-                  style={{ height: 150, width: 150 }}
-                  resizeMode="center"
-                />
-              </View>
-
+          {vegetableLayout.length >= 1 ? (
+            <Overlay
+              isVisible={this.state.isVisible}
+              onBackdropPress={() => {
+                this.setState({ isVisible: false });
+              }}
+              style={{ overlayBackgroundColor: "grey" }}
+            >
               <View>
-                <Text style={styles.overlayText}>
-                  Drag and drop to rearrange your garden, or click on each
-                  vegetable to see more information.
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    this.setState({ isVisible: false });
-                  }}
-                >
-                  <Text style={styles.overlayButton}>Got it!</Text>
-                </TouchableOpacity>
+                <View style={{ alignItems: "center", margin: 10 }}>
+                  <Image
+                    source={Carrot}
+                    style={{ height: 150, width: 150 }}
+                    resizeMode="center"
+                  />
+                </View>
+
+                <View>
+                  <Text style={styles.overlayText}>
+                    Drag and drop to rearrange your garden, or click on each
+                    vegetable to see more information.
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.setState({ isVisible: false });
+                    }}
+                  >
+                    <Text style={styles.overlayButton}>Got it!</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-            </View>
-          </Overlay>
+            </Overlay>
+          ) : (
+            <Overlay
+              isVisible={this.state.isVisible}
+              onBackdropPress={() => {
+                this.setState({ isVisible: false });
+              }}
+              style={{ overlayBackgroundColor: "grey" }}
+            >
+              <View>
+                <View style={{ alignItems: "center", margin: 10 }}>
+                  <Image
+                    source={Carrot}
+                    style={{ height: 150, width: 150 }}
+                    resizeMode="center"
+                  />
+                </View>
+
+                <View>
+                  <Text style={styles.overlayText}>
+                    Please select your vegetables to allow us to build your
+                    garden.
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.navigation.navigate("Vegetables");
+                    }}
+                  >
+                    <Text style={styles.overlayButton}>Got it!</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Overlay>
+          )}
         </View>
         <View style={{ height: 400, margin: 10 }}>
           <View
