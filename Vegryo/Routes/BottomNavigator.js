@@ -14,10 +14,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 const HomeStack = createStackNavigator(
   {
-    Home: { screen: WelcomePage }
-    // MyGarden: { screen: MyGarden },
-    // Vegetables: { screen: Vegetables },
-    // CreateAccount: { screen: CreateAccount }
+    Home: { screen: WelcomePage },
+    MyGarden: { screen: MyGarden },
+    Vegetables: { screen: Vegetables },
+    CreateAccount: { screen: CreateAccount }
   },
   {
     defaultNavigationOptions: {

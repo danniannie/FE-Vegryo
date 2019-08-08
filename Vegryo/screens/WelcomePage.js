@@ -47,15 +47,18 @@ class WelcomePage extends React.Component {
     );
   }
 
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   this.fetchUser().then(data => {
-  //     if (prevState.veg != Object.keys(data.data.Garden)) {
-  //       console.log(prevState.veg, "prevstate");
-  //       console.log(Object.keys(data.data.Garden), "data");
-  //       this.setState({ veg: Object.keys(data.data.Garden) });
-  //     }
-  //   });
-  // };
+  componentDidUpdate = (prevProps, prevState) => {
+    const { plantDates } = this.props.screenProps;
+    if (plantDates !== prevProps.screenProps.plantDates) {
+      console.log(Object.keys(plantDates));
+      console.log(Object.values(plantDates));
+
+      this.setState({
+        veg: Object.keys(plantDates),
+        dateplanted: plantDates
+      });
+    }
+  };
 
   componentDidMount = () => {
     this.fetchUser().then(data => this.setState({ isLoadingUser: false }));

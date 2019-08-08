@@ -107,6 +107,7 @@ class MyGarden extends Component {
             gardenWidth={this.state.gardenWidth}
             gardenHeight={this.state.gardenHeight}
             user={this.props.screenProps.user}
+            addPlantDate={this.props.screenProps.addPlantDate}
           />
         </View>
       </View>

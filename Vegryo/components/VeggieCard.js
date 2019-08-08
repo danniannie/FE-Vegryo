@@ -24,7 +24,7 @@ export default class VeggieCard extends React.Component {
     return (
       <Collapse>
         <CollapseHeader style={styles.header}>
-          <Text style={{ fontFamily: "B612Mono-Regular" }}>
+          <Text style={{ fontFamily: "B612Mono-Regular", fontSize: 16 }}>
             {vegetable.id}{" "}
           </Text>
         </CollapseHeader>
@@ -135,10 +135,8 @@ export default class VeggieCard extends React.Component {
 
 const styles = StyleSheet.create({
   header: {
-    borderColor: "black",
-    borderWidth: 0.5,
     padding: 30,
-    margin: 2,
+    margin: 3,
     alignItems: "center",
     backgroundColor: "whitesmoke"
   },
