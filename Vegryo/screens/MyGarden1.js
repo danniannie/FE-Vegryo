@@ -45,6 +45,7 @@ class MyGarden extends Component {
   };
 
   render() {
+    const { user } = this.props.screenProps;
     return (
       <View>
         <View>
@@ -108,6 +109,7 @@ class MyGarden extends Component {
             gardenHeight={this.state.gardenHeight}
             user={this.props.screenProps.user}
             addPlantDate={this.props.screenProps.addPlantDate}
+            user={user}
           />
         </View>
       </View>
