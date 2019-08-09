@@ -18,11 +18,11 @@ class HomeVeggies extends React.Component {
   render() {
     const { icon, growTime } = this.state;
     const { veg, date } = this.props;
-    console.log(daysGrown(date));
+
     return (
       <View style={styles.veg}>
         <Image
-          style={{ width: 70, height: 70, marginRight: 15 }}
+          style={styles.image}
           source={{
             uri: icon
           }}
@@ -31,15 +31,15 @@ class HomeVeggies extends React.Component {
 
         {growTime[veg] - daysGrown(date) <= 0 ? (
           <View>
-            <Text style={{ fontFamily: "B612Mono-Regular" }}>
+            <Text style={styles.text}>
               Your {veg} crops are ready
               {"\n"}to harvest!
             </Text>
           </View>
         ) : (
-          <Text style={{ fontFamily: "B612Mono-Regular" }}>
+          <Text style={styles.text}>
             Your {veg} crops will be {"\n"}ready to harvest in{" "}
-            {Math.floor(growTime[veg] - daysGrown(date))} days.
+            {growTime[veg] - Math.floor(daysGrown(date))} days.
           </Text>
         )}
       </View>
@@ -64,6 +64,15 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     flexDirection: "row",
     alignItems: "center"
+  },
+  text: {
+    fontFamily: "B612Mono-Regular",
+    fontSize: 13
+  },
+  image: {
+    width: 70,
+    height: 70,
+    marginRight: 15
   }
 });
 

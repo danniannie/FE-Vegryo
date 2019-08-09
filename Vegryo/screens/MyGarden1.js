@@ -46,7 +46,7 @@ class MyGarden extends Component {
 
   render() {
     const { user, vegetableLayout } = this.props.screenProps;
-    console.log(this.state.seedLookUp);
+
     return (
       <View>
         <View>
