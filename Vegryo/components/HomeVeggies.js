@@ -18,7 +18,7 @@ class HomeVeggies extends React.Component {
   render() {
     const { icon, growTime } = this.state;
     const { veg, date } = this.props;
-
+    console.log(daysGrown(date));
     return (
       <View style={styles.veg}>
         <Image
@@ -39,7 +39,7 @@ class HomeVeggies extends React.Component {
         ) : (
           <Text style={{ fontFamily: "B612Mono-Regular" }}>
             Your {veg} crops will be {"\n"}ready to harvest in{" "}
-            {Math.floor(daysGrown(date))} days.
+            {Math.floor(growTime[veg] - daysGrown(date))} days.
           </Text>
         )}
       </View>
