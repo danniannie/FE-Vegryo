@@ -37,7 +37,7 @@ class MyGarden extends Component {
               fontFamily: "B612Mono-Regular"
             }}
           >
-            {item.label}
+            {item.label} - {this.state.seedLookUp[item.label]}
           </Text>
         </TouchableOpacity>
       </View>
@@ -46,7 +46,7 @@ class MyGarden extends Component {
 
   render() {
     const { user, vegetableLayout } = this.props.screenProps;
-
+    console.log(this.state.seedLookUp);
     return (
       <View>
         <View>

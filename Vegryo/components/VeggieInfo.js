@@ -34,7 +34,7 @@ export default class VeggieInfo extends Component {
       <View
         style={{
           width: "90%",
-          height: 125,
+          height: 145,
           margin: 3,
           padding: 2,
           backgroundColor: "whitesmoke",
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   button: {
     width: 120,
     height: 30,
-    margin: 5,
+    margin: 7,
     backgroundColor: "#5576B5"
   },
   buttonText: {
